@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using eLearning.Models;
 
 namespace eLearning.Data
 {
@@ -12,5 +13,6 @@ namespace eLearning.Data
             : base(options)
         {
         }
+        public DbSet<eLearning.Models.Course> Course { get; set; }
     }
 }
