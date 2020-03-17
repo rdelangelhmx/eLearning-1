@@ -24,6 +24,11 @@ namespace eLearning.Controllers
         {
             return View(await _context.Course.ToListAsync());
         }
+        // GET: Courses/NotRegistered
+        public async Task<IActionResult> NotRegistered()
+        {
+            return View();
+        }
 
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
