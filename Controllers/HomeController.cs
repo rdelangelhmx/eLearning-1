@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using eLearning.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eLearning.Controllers
 {
@@ -18,11 +19,13 @@ namespace eLearning.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
