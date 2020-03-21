@@ -57,7 +57,7 @@ namespace eLearning
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -85,6 +85,8 @@ namespace eLearning
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            CreateRoles(services).Wait();
         }
 
         private async Task CreateRoles(IServiceProvider serviceProvider)
@@ -100,12 +102,17 @@ namespace eLearning
                 //here in this line we are creating admin role and seed it to the database
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
-            //here we are assigning the Admin role to the User that we have registered above 
-            //Now, we are assinging admin role to this user("Ali@gmail.com"). When will we run this project then it will
-            //be assigned to that user.
-            IdentityUser user = await UserManager.FindByEmailAsync("Ali@gmail.com");
-            var User = new IdentityUser();
+
+            //Create the admin of the application
+            var user = new IdentityUser();
+            user.UserName = "administrator@ici.ro";
+            user.Email = "administrator@ici.ro";
+            user.EmailConfirmed = true;
+            string userPWD = "1qaz!QAZ";
+            IdentityResult chkUser = await UserManager.CreateAsync(user, userPWD);
+
             await UserManager.AddToRoleAsync(user, "Admin");
         }
+
     }
 }

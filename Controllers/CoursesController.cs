@@ -25,7 +25,7 @@ namespace eLearning.Controllers
             return View(await _context.Course.ToListAsync());
         }
         // GET: Courses/NotRegistered
-        public async Task<IActionResult> NotRegistered()
+        public IActionResult NotRegistered()
         {
             return View();
         }
