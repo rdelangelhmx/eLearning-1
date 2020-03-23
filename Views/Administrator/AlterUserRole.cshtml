@@ -1,0 +1,31 @@
+﻿@model eLearning.Models.AlterUserModel
+@{
+    ViewData["Title"] = "Promote User";
+}
+
+<h1>Promote user role</h1>
+
+<br />
+
+<h4>Email: @Model.Email</h4>
+<h4>Current Role: @Model.CurrentRole</h4>
+
+@if (Model.CurrentRole == "Student")
+{
+    @Html.ActionLink("Promote to Tutor", "ChangeRole", "Administrator", new { email = Model.Email, role = "Tutor"}); <br />
+    @Html.ActionLink("Promote to Administrator", "ChangeRole", "Administrator", new { email = Model.Email, role = "Admin"});
+}
+
+@if (Model.CurrentRole == "Tutor")
+{
+    @Html.ActionLink("Demote to Student", "ChangeRole", "Administrator", new { email = Model.Email, role = "Student"});<br />
+    @Html.ActionLink("Promote to Administrator", "ChangeRole", "Administrator", new { email = Model.Email, role = "Admin"});
+}
+
+@if (Model.CurrentRole == "Admin")
+{
+    @Html.ActionLink("Demote to Student", "ChangeRole", "Administrator", new { email = Model.Email, role = "Student"});<br />
+    @Html.ActionLink("Demote to Tutor", "ChangeRole", "Administrator", new { email = Model.Email, role = "Tutor"});
+}
+
+

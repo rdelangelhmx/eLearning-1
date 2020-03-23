@@ -95,12 +95,21 @@ namespace eLearning
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
             IdentityResult roleResult;
-            //here in this line we are adding Admin Role
+
+            //Check and add Administrator Role
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
             if (!roleCheck)
             {
-                //here in this line we are creating admin role and seed it to the database
+                //Create role and seed it in the database
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            //Check and add Tutor Role
+            roleCheck = await RoleManager.RoleExistsAsync("Tutor");
+            if (!roleCheck)
+            {
+                //Create role and seed it in the database
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Tutor"));
             }
 
             //Create the admin of the application
@@ -110,8 +119,9 @@ namespace eLearning
             user.EmailConfirmed = true;
             string userPWD = "1qaz!QAZ";
             IdentityResult chkUser = await UserManager.CreateAsync(user, userPWD);
-
             await UserManager.AddToRoleAsync(user, "Admin");
+
+
         }
 
     }

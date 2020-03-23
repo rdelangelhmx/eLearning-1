@@ -22,6 +22,10 @@ namespace eLearning.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Administrator");
+            }
             return View();
         }
 

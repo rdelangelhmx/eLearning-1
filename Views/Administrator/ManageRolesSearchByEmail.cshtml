@@ -1,0 +1,17 @@
+﻿@model eLearning.Models.EmailSearch
+
+@{
+    ViewData["Title"] = "Manage User Roles";
+}
+
+<h1>Manage user roles</h1>
+
+<h3>Search by email</h3>
+
+<br />
+
+<form asp-action="ManageRolesSearchByEmail" asp-controller="Administrator">
+    <input asp-for="email" placeholder="Search by email" />
+    <input id="email" type="submit" />
+</form> 
+
