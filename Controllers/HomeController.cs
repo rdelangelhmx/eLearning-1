@@ -30,11 +30,31 @@ namespace eLearning.Controllers
         }
 
         [AllowAnonymous]
+        public IActionResult News()
+        {
+            return View();
+        }
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
+        [AllowAnonymous]
+        public IActionResult TermsAndConditions() {
+            return View();
+        }
 
+        [AllowAnonymous]
+        public IActionResult Team()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult UsageGuide()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
