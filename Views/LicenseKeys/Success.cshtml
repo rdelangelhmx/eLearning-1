@@ -1,0 +1,15 @@
+﻿@model string[]
+
+@{
+    ViewData["Title"] = "Success";
+}
+
+<h1>License(s) created successfully</h1>
+
+<br />
+
+@foreach(string k in Model)
+{
+    <h5>@k</h5>
+}
+
