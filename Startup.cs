@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using eLearning.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace eLearning
 {
@@ -54,6 +55,7 @@ namespace eLearning
             services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.AddRazorPages();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

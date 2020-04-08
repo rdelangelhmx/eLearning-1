@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Redeem";
+}
+
+<h1>Enter the key provided by ICI</h1>
+
+<form asp-controller="Courses" asp-action="Redeem" method="post">
+
+    <input id="key" name="key" placeholder="Serial code" /><br /><br />
+    <input type="submit" />
+
+</form>
+

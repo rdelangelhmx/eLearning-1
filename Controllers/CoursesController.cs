@@ -10,30 +10,43 @@ using eLearning.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace eLearning.Controllers
 {
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public CoursesController(ApplicationDbContext context)
+        public CoursesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Courses
-        [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //Only show courses the user is registered
             //Get the list of courses
+            var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id);
+            List<Course> registered_courses = new List<Course>();
 
+            foreach (var entry in user_course_entries)
+            {
+                var course = _context.Course.Where(c => c.Id == entry.CourseId).FirstOrDefault();
+                //add course to vector
+                registered_courses.Add(course);
+            }
 
-            return View(await _context.Course.ToListAsync());
+            return View(registered_courses);
         }
+
         // GET: Courses/NotRegistered
-        [AllowAnonymous]
         public IActionResult NotRegistered()
         {
             return View();
@@ -43,19 +56,100 @@ namespace eLearning.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            //Verify if user is registered at this course
+            bool allowed = false;
+            var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id);
+
+            foreach (var entry in user_course_entries)
             {
-                return NotFound();
+                if(entry.CourseId == id)
+                {
+                    allowed = true;
+                }
             }
 
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (course == null)
+            if (allowed)
             {
-                return NotFound();
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var course = await _context.Course
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (course == null)
+                {
+                    return NotFound();
+                }
+
+                return View(course);
+            }
+            else
+            {
+                return RedirectToAction("NotRegistered");
+            }
+            
+        }
+
+        public IActionResult Redeem()
+        {
+            return View();
+        }
+
+        public IActionResult RedeemSuccess()
+        {
+            return View();
+        }
+
+        public IActionResult RedeemFail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Redeem(string key)
+        {
+            try
+            {
+                if (key == null)
+                    throw new Exception("Zero requested");
+
+                var keys_in_database = _context.LicenseKey.ToList();
+
+                foreach(var k in keys_in_database)
+                {
+                    if(k.Value == key && k.Used == false)
+                    {
+                        var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        //Key found. Mark it as USED and allow access
+                        k.Used = true;
+                        _context.Update(k);
+                        _context.SaveChanges();
+
+                        var obj = new UserCourse
+                        {
+                            CourseId = k.Course_id,
+                            UserId = current_user_id,
+                            KeyUsed = k.Value
+                        };
+
+                        _context.UserCourse.Add(obj);
+                        _context.SaveChanges();
+
+                        return RedirectToAction("RedeemSuccess");
+                    }
+                }
+
+                return RedirectToAction("RedeemFail");
+
+            }
+            catch
+            {
+                return RedirectToAction("RedeemFail");
             }
 
-            return View(course);
         }
 
         [Authorize(Roles = "Admin")]
