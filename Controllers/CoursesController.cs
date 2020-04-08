@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eLearning.Data;
 using eLearning.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eLearning.Controllers
 {
@@ -20,17 +21,20 @@ namespace eLearning.Controllers
         }
 
         // GET: Courses
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Course.ToListAsync());
         }
         // GET: Courses/NotRegistered
+        [AllowAnonymous]
         public IActionResult NotRegistered()
         {
             return View();
         }
 
         // GET: Courses/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

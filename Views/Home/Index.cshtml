@@ -2,13 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!--First element with picture-->
-    <div class="container-fluid full-width" >
-        <div style="background-image: url(images/poza.png);">
-            <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4 ">
+<!--First element with picture
+    <body>
+        <div class="mb-3">
+
+            <div class="text-black-50 text-center align-items-center rgba-black-strong py-5 px-4 ">
                 <div>
                     <h3 class="card-title py-3 font-weight-bold"><strong>Welcome to ICI-Learning platform</strong></h3>
-                    <p class="pb-3 ml-2 mr-2">
+                    <p class="pb-3">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
                         optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
                         Odit sed qui, dolorum!
@@ -16,12 +17,89 @@
                     <a class="btn btn-info btn-rounded"><i class=""></i>Find more</a>
                 </div>
             </div>
+
+
         </div>
-       
-    </div>
-<!--Second element with 3 cards-->
-    <div class="container-fluid row align-items-start">
-        <div class="col-md-4 mb-2 pr-2 ">
+-->
+
+    <body>
+
+        <!--Carousel-->
+        <div id="demo" class="carousel slide mb-5 alignfull " data-ride="carousel">
+
+            <!-- Indicators-->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+
+            <!-- The slideshow-->
+            <div class="carousel-inner">
+                <div  class="carousel-item active" data-interval="5000">
+                    <img class="" src="~/images/security3.jpg" style="width:1300px; height:500px;">
+                    <div class="carousel-caption text-center text-justify ">
+                        <h3>Welcome to ICI-Learning platform</h3>
+                        <p>
+                            With the help of the ICI platform you will quickly and easily accumulate knowledge in the field of technology and cyber security
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-interval="5000">
+                    <img class="" src="~/images/security5.jpg" style="width:1300px; height:500px;">
+                    <div class="carousel-caption text-center text-justify ">
+                        <h3>
+                            Improve your skills
+                        </h3>
+                        <p>
+
+                            Cyber security, programming, SCADA system security and many other courses come to your aid to achieve the desired performance
+                        </p>
+
+                    </div>
+                </div>
+                <div class="carousel-item" data-interval="5000">
+                    <img class="" src="~/images/security1.jpg" style="width:1300px; height:500px;">
+                    <div class="carousel-caption text-center text-justify ">
+                        <h3>
+
+                            Connect with people
+                        </h3>
+                        <p>
+
+                            Learn the things you are passionate about from competent people and share your experiences in the field of technology
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls-->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <!--<span class="carousel-control-next-icon"></span>-->
+        </a>
+
+        </div>
+        <style>
+            .alignfull {
+                position: relative;
+                width: 100vw;
+                max-width: 100vw;
+                margin-left: calc(50% - 50vw);
+            }
+
+        </style>
+
+
+
+
+        <!--Card deck-->
+        <div class="card-deck">
             <div class="card card-image" style="background-color: white;">
 
                 <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
@@ -33,14 +111,12 @@
                             optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
                             Odit sed qui, dolorum!
                         </p>
-                        <a class="btn btn-info btn-rounded"><i class=""></i> Find More</a>
+                        <a class="btn btn-info btn-rounded"><i class=""></i> Find more</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-md-4 mb-2 pr-2">
+
+
             <div class="card card-image" style="background-color:white;">
                 <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
                     <div>
@@ -55,10 +131,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-md-4 mb-2 pr-2">
+
+
             <div class="card card-image" style="background-color: white;">
                 <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
                     <div>
@@ -73,20 +147,12 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
+ 
+    </body>
 
 
-    </div>
-<style>
-    .full-width {
-        margin-left: -10%;
-        margin-right: -10%;
-        width: 120%;
-        height: 100%;
-        margin-top: -1.3%;
-        margin-bottom:3%;
-        background-position: center;
-        
-    }
-</style>
+
 
