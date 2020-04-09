@@ -3,12 +3,19 @@
     ViewData["Title"] = "Redeem";
 }
 
-<h1>Enter the key provided by ICI</h1>
+<h2 class="text-black-50 text-justify mt-3 mb-4">Enter the key provided by ICI</h2>
 
-<form asp-controller="Courses" asp-action="Redeem" method="post">
 
-    <input id="key" name="key" placeholder="Serial code" /><br /><br />
-    <input type="submit" />
 
+<form class="align-items-center"  asp-controller="Courses" asp-action="Redeem" method="post">
+    <div class="form-group">
+        <label class="text-black-50 font-weight-bold mb-2" for="key">Serial code</label>
+        <input type="text" class="form-control mb-2" style="width:38%;" id="key" placeholder="Enter serial code" required>
+    </div>
+    <button type="submit" class="btn btn-secondary btn-rounded">Submit</button>
 </form>
+
+
+
+
 
