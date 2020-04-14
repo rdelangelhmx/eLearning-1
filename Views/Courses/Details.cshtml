@@ -48,9 +48,11 @@
                             </div>
 
                             <div class="text-center">
-                                <a class="btn btn-light btn-rounded text-black-50" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-light btn-rounded text-black-50" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                                }
                                 <a class="btn btn-light btn-rounded text-black-50" asp-action="Index">Back to List</a>
-
                             </div>
                            <br />
                         </div>
@@ -76,28 +78,26 @@
                            
                             <div class="align-items-center">
                                 <p>
-                                    <strong>Explore materials</strong>
-                                </p>
-                                <p>
-                                    <a class="btn btn-light btn-rounded"><i class=""></i>Find more</a>
+                                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Details" asp-route-id="@Model.Id">TRAINING</a>
+
                                 </p>
 
-
+                                <br />
 
                                 <p>
-                                    <strong>View certificate</strong>
+                                    <a class="btn btn-light btn-lg btn-block" >EVALUATION</a>
                                 </p>
+
+                                <br />
+
                                 <p>
-                                    <a class="btn btn-light btn-rounded"><i class=""></i>Find more</a>
-                                    <br /><br />
+                                    <a class="btn btn-light btn-lg btn-block"><i class=""></i>CERTIFICATE</a>
                                 </p>
-                                <br /><br />    
-                                <br /><br />    
-
-
 
                             </div>
                            
+                            <br />
+                            <br />
 
                         </div>
                     </div>

@@ -1,0 +1,22 @@
+﻿@model eLearning.Models.Training
+
+@{
+    ViewData["Title"] = "Training";
+}
+
+<div>
+    @if(Model.No_Of_lectures != 0)
+    {
+        <h3>Content</h3>
+    }
+    else
+    {
+        <div class="container-fluid">
+
+            <div class="text-center align-items-center pt-4 pb-4">
+                <h4 class="card-title py-3 text-black-50"> The training section has not been setup yet </h4>
+            </div>
+
+        </div>
+    }
+</div>

@@ -16,5 +16,6 @@ namespace eLearning.Data
         public DbSet<eLearning.Models.Course> Course { get; set; }
         public DbSet<eLearning.Models.LicenseKey> LicenseKey { get; set; }
         public DbSet<eLearning.Models.UserCourse> UserCourse { get; set; }
+        public DbSet<eLearning.Models.Training> Training { get; set; }
     }
 }

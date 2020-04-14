@@ -30,6 +30,12 @@ namespace eLearning.Controllers
         // GET: Courses
         public IActionResult Index()
         {
+            //If Admin - list all
+            if (User.IsInRole("Admin"))
+            {
+                return View(_context.Course.ToList());
+            }
+
             //Only show courses the user is registered
             //Get the list of courses
             var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -40,7 +46,10 @@ namespace eLearning.Controllers
             {
                 var course = _context.Course.Where(c => c.Id == entry.CourseId).FirstOrDefault();
                 //add course to vector
-                registered_courses.Add(course);
+                if (!registered_courses.Contains(course))
+                {
+                    registered_courses.Add(course);
+                }
             }
 
             return View(registered_courses);
@@ -60,6 +69,11 @@ namespace eLearning.Controllers
             bool allowed = false;
             var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id);
+
+            if (User.IsInRole("Admin"))
+            {
+                allowed = true;
+            }
 
             foreach (var entry in user_course_entries)
             {
@@ -274,6 +288,16 @@ namespace eLearning.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(course);
+                await _context.SaveChangesAsync();
+                //Get the inserted course
+                var c = _context.Course.Where(x => x.Name == course.Name && x.StartingDate == course.StartingDate).FirstOrDefault();
+                //Generate Training Item for course
+                var train = new Training
+                {
+                    Course_Id = c.Id,
+                    No_Of_lectures = 0
+                };
+                _context.Training.Add(train);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
