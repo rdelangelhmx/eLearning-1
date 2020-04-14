@@ -3,17 +3,35 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h1>Administrator Dashboard</h1>
+<h2 class="text-black-50 text-justify mb-4 mt-3">Administrator Dashboard</h2>
 
-<div>
+    <div class="align-content-center text-center">
+        <div class="card " style="width: 18rem;">
 
-    @Html.ActionLink("Change user privileges", "ManageRolesSearchByEmail", "Administrator")<br />
+            <a class="btn btn-block btn-info btn-rounded mr-3 mb-2" href="@Url.Action("ManageRolesSearchByEmail", "Administrator")">Change user privileges</a>
 
-    @Html.ActionLink("View all courses", "Index", "Courses")<br />
+        </div>
+        <div class="card" style="width: 18rem; ">
 
-    @Html.ActionLink("View all license keys", "Index", "LicenseKeys")<br />
+            <a class="btn btn-block btn-info btn-rounded mr-3 mb-2" href="@Url.Action("Index", "Courses")">View all courses</a>
 
-</div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <a class="btn btn-block btn-info btn-rounded mb-2" href="@Url.Action("Index","LicenseKeys")">View all license keys</a>
+
+
+        </div>
+
+    </div>
+
+<style>
+    .card{
+        border:none;
+        
+
+    }
+</style>
 
 
 

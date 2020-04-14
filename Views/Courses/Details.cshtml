@@ -3,111 +3,107 @@
 @{
     ViewData["Title"] = "Details";
 }
-    <body style="background-color:#E8E8E8;">
+<body>
+    <div class="row mt-5">
+        <div class="col-8">
+            <ul class="list-group">
+                <li class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Course Details</li>
+                <li class="list-group-item d-flex justify-content-md-between align-items-center">
+                    @Html.DisplayNameFor(model => model.Name)
+                    <span class=""> @Html.DisplayFor(model => model.Name)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-md-between align-items-center">
+                    Starting Date
+                    <span class=""> @Html.DisplayFor(model => model.StartingDate)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-md-between  align-items-center">
+                    Ending Date
+                    <span class=""> @Html.DisplayFor(model => model.EndingDate)</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-md-between align-items-center">
+                    Certificate
+                    @if (Model.HasCertificate == false)
+                    {
+                        <span class="">NO</span>
+                    }
+                    else
+                    {
+                        <span class="">YES</span>
+                    }
 
-        <div class="row align-items-start">
-            <div class="col-md-7 mb-2">
-                <div class="card card-image" style="background-color: white;">
-
-                    <div class="text-black-50 d-flex align-items-center rgba-black-strong py-5 px-4">
-                        <div >
-                            <h3 class="card-title text-center  py-2 font-weight-bold"><strong>Course details</strong></h3>
-                            <hr/>
-                            <div>
-                            
-                                <dl class="row">
-                                    <dt class="col-sm-3">
-                                        @Html.DisplayNameFor(model => model.Name)
-                                    </dt>
-                                    <dd class="col-sm-11">
-                                        @Html.DisplayFor(model => model.Name)
-                                    </dd>
-                                    <dt class="col-sm-3">
-                                        @Html.DisplayNameFor(model => model.StartingDate)
-                                    </dt>
-                                    <dd class="col-sm-11">
-                                        @Html.DisplayFor(model => model.StartingDate)
-                                    </dd>
-                                    <dt class="col-sm-3">
-                                        @Html.DisplayNameFor(model => model.EndingDate)
-                                    </dt>
-                                    <dd class="col-sm-11">
-                                        @Html.DisplayFor(model => model.EndingDate)
-                                    </dd>
-                                    <dt class="col-sm-3">
-                                        @Html.DisplayNameFor(model => model.HasCertificate)
-                                    </dt>
-                                    <dd class="col-sm-11">
-                                        @Html.DisplayFor(model => model.HasCertificate)
-
-                                    </dd>
-                                    
-                                </dl>
-                               
-                                
-                            </div>
-
-                            <div class="text-center">
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <a class="btn btn-light btn-rounded text-black-50" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                                }
-                                <a class="btn btn-light btn-rounded text-black-50" asp-action="Index">Back to List</a>
-                            </div>
-                           <br />
-                        </div>
-                        
-                    </div>
-                    
-
-                </div>
-               
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-5 mb-2 ">
-                <div class="card card-image" style="background-color: white;width:auto;">
-
-                    <div class="text-black-50 text-center align-items-center rgba-black-strong py-5 px-4">
-                        <div class="align-items-center ">
-                            <div>
-                                <h3 class="card-title text-center py-2 font-weight-bold"><strong>Activities</strong></h3>
-                                <hr/>
-                            </div>
-
-                           
-                            <div class="align-items-center">
-                                <p>
-                                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Details" asp-route-id="@Model.Id">TRAINING</a>
-                                </p>
-
-                                <br />
-
-                                <p>
-                                    <a class="btn btn-light btn-lg btn-block" >EVALUATION</a>
-                                </p>
-
-                                <br />
-
-                                <p>
-                                    <a class="btn btn-light btn-lg btn-block"><i class=""></i>CERTIFICATE</a>
-                                </p>
-
-                            </div>
-                           
-                            <br />
-                            <br />
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
+                </li>
+            </ul>
         </div>
+        <div class="col-4">
 
-           
-           
+            <div class="list-group">
+                <div class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Student resources</div>
+                <a class="list-group-item list-group-item-action " asp-controller="Trainings" asp-action="Details" asp-route-id="@Model.Id">TRAINING</a>
+                <a class="list-group-item list-group-item-action ">EVALUATION</a>
+                <a class="list-group-item list-group-item-action"><i class=""></i>CERTIFICATE</a>
+                <a class="list-group-item list-group-item-action" asp-action="Index">BACK TO COURSES</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
 
 </body>
-   
+<!--
+
+ <div class="card card-image" style="background-color: white;">
+
+                 <div class="text-black-50 d-flex align-items-center rgba-black-strong py-5 px-4">
+                     <div>
+                         <h3 class="card-title text-center  py-2 font-weight-bold"><strong>Course details</strong></h3>
+                         <hr />
+                         <div>
+
+                             <dl class="row">
+                                 <dt class="col-sm-3">
+                                     @Html.DisplayNameFor(model => model.Name)
+                                 </dt>
+                                 <dd class="col-sm-11">
+                                     @Html.DisplayFor(model => model.Name)
+                                 </dd>
+                                 <dt class="col-sm-3">
+                                     @Html.DisplayNameFor(model => model.StartingDate)
+                                 </dt>
+                                 <dd class="col-sm-11">
+                                     @Html.DisplayFor(model => model.StartingDate)
+                                 </dd>
+                                 <dt class="col-sm-3">
+                                     @Html.DisplayNameFor(model => model.EndingDate)
+                                 </dt>
+                                 <dd class="col-sm-11">
+                                     @Html.DisplayFor(model => model.EndingDate)
+                                 </dd>
+                                 <dt class="col-sm-3">
+                                     @Html.DisplayNameFor(model => model.HasCertificate)
+                                 </dt>
+                                 <dd class="col-sm-11">
+                                     @Html.DisplayFor(model => model.HasCertificate)
+
+                                 </dd>
+
+                             </dl>
+
+
+                         </div>
+
+                         <div class="text-center">
+                             @if (User.IsInRole("Admin"))
+                             {
+                                 <a class="btn btn-light btn-rounded text-black-50" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                             }
+                             <a class="btn btn-light btn-rounded text-black-50" asp-action="Index">Back to List</a>
+                         </div>
+                         <br />
+                     </div>
+
+                 </div>
+
+
+             </div>-->

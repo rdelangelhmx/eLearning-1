@@ -45,16 +45,16 @@ else
         <tbody class="text-center">
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartingDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EndingDate)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndingDate)
+                </td>
 
                     <td>
                         @if (User.IsInRole("Admin"))
