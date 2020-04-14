@@ -1,5 +1,3 @@
-using System;
-
 namespace eLearning.Models
 {
     public class ErrorViewModel

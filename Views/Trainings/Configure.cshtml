@@ -1,0 +1,18 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Configure";
+}
+
+<h1>Configure the Training section</h1>
+<br />
+
+<form asp-controller="Trainings" asp-action="Configure" method="post">
+    <div>
+        <input type="number" id="no_of_lectures" name="no_of_lectures" min="1" class="form-control" id="no_of_lectures" placeholder="Enter the number of lectures">
+        <input type="hidden" value="@Model" id="course_id" name="course_id" />
+        <br />
+        <button type="submit" class="btn btn-primary">Done</button>
+    </div>
+</form>
+
+

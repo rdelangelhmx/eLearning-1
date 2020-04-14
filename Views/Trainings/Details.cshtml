@@ -1,13 +1,50 @@
-﻿@model eLearning.Models.Training
+﻿@model List<eLearning.Models.Lecture>
 
 @{
     ViewData["Title"] = "Training";
 }
 
 <div>
-    @if(Model.No_Of_lectures != 0)
+    @if (Model.ElementAt(0).Text_Content != "dummy")
     {
-        <h3>Content</h3>
+        <div class="text-center align-items-center">
+            <br />
+            <h3 class="text-black-50">Your Materials</h3>
+            <br />
+        </div>
+
+        <div id="accordion">
+            @foreach (var l in Model)
+            {
+
+                <div class="card">
+                    <div class="card-header" id="div_@(l.Lecture_Title)">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#div_@(l.Index)" aria-expanded="false" aria-controls="div_@(l.Index)">
+                                @l.Lecture_Title
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="div_@(l.Index)" class="collapse" aria-labelledby="div_@(l.Lecture_Title)" data-parent="#accordion">
+                        <div class="card-body">
+                            @l.Text_Content
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+            }
+
+            @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
+            {
+                <form asp-controller="Trainings" asp-action="ResetWarning">
+                    <button type="submit" class="btn btn-danger">Reset Materials Page</button>
+                    <input type="hidden" value="@Model.FirstOrDefault().Course_Id" name="id" id="id"/>
+                </form>
+            }
+        </div>
     }
     else
     {
@@ -16,6 +53,22 @@
             <div class="text-center align-items-center pt-4 pb-4">
                 <h4 class="card-title py-3 text-black-50"> The training section has not been setup yet </h4>
             </div>
+
+            @if (User.IsInRole("Tutor"))
+            {
+                <div class="text-center align-items-center pt-4 pb-4">
+                    <h5 class="card-title py-3 text-black-50">You are the instructor</h5>
+                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Course_Id">CONFIGURE COURSE</a>
+                </div>
+            }
+
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="text-center align-items-center pt-4 pb-4">
+                    <h5 class="card-title py-3 text-black-50">You are the administrator</h5>
+                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Course_Id">CONFIGURE COURSE</a>
+                </div>
+            }
 
         </div>
     }

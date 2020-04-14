@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using eLearning.Data;
+﻿using eLearning.Data;
 using eLearning.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace eLearning.Controllers
 {
@@ -42,17 +40,17 @@ namespace eLearning.Controllers
             try
             {
                 var users = from u in _context.Users
-                           select u;
+                            select u;
 
                 if (!string.IsNullOrEmpty(email))
                 {
                     var user = users.Where(u => u.Email.Equals(email));
-                    if(user.Count() == 1)
+                    if (user.Count() == 1)
                     {
                         //Find user current role
                         var role = _context.UserRoles.Where(r => r.UserId == user.FirstOrDefault().Id);
 
-                        if(role.Count() != 0)
+                        if (role.Count() != 0)
                         {
                             var roleName = _context.Roles.Where(r => r.Id == role.FirstOrDefault().RoleId).FirstOrDefault().Name;
                             //Found a user with this email - show alter user role page
@@ -84,7 +82,7 @@ namespace eLearning.Controllers
 
             return View();
         }
-    
+
         //Get
         public IActionResult AlterUserRole(AlterUserModel user)
         {
@@ -98,14 +96,14 @@ namespace eLearning.Controllers
             //Remove all entries for roles in database
             var previousRoles = _context.UserRoles.Where(u => u.UserId == user.Id);
 
-            foreach(var previousRole in previousRoles)
+            foreach (var previousRole in previousRoles)
             {
                 _context.UserRoles.Remove(previousRole);
             }
 
             _context.SaveChanges();
 
-            if(role != "Student")
+            if (role != "Student")
             {
                 await _userManager.AddToRoleAsync(user, role);
             }

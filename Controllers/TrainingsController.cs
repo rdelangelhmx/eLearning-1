@@ -1,12 +1,11 @@
-﻿using System;
+﻿using eLearning.Data;
+using eLearning.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using eLearning.Data;
-using eLearning.Models;
 
 namespace eLearning.Controllers
 {
@@ -34,7 +33,66 @@ namespace eLearning.Controllers
                 return NotFound();
             }
 
-            return View(training);
+            if(training.No_Of_lectures != 0)
+            {
+                //Get all the Lecture objects
+                var lectures = _context.Lecture.Where(x => x.Course_Id == id).ToList();
+                return View(lectures);
+            }
+
+            var dummy_list = new Lecture
+            {
+                Course_Id = id.GetValueOrDefault(),
+                Text_Content = "dummy"
+            };
+            var l = new List<Lecture>();
+            l.Add(dummy_list);
+            return View(l);
+        }
+
+        // GET: Trainings/Configure/5
+        public async Task<IActionResult> Configure(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var training = await _context.Training
+                .FirstOrDefaultAsync(m => m.Course_Id == id);
+            if (training == null)
+            {
+                return NotFound();
+            }
+
+            return View(training.Course_Id);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Configure(int course_id, int no_of_lectures)
+        {
+            //Create all the lecture objects and store them in the database
+            for(int i=0; i<no_of_lectures; i++)
+            {
+                var lecture = new Lecture
+                {
+                    Course_Id = course_id,
+                    Text_Content = "Not setup yet",
+                    Lecture_Title = "Lecture " + (i+1).ToString(),
+                    Index = (i+1).ToString()
+                };
+                _context.Lecture.Add(lecture);
+                _context.SaveChanges();
+            }
+
+            //Update the training object for the course
+            var train = _context.Training.Where(x => x.Course_Id == course_id).FirstOrDefault();
+            train.No_Of_lectures = no_of_lectures;
+            _context.Training.Update(train);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = course_id });
         }
 
         // GET: Trainings/Edit/5
@@ -51,6 +109,43 @@ namespace eLearning.Controllers
                 return NotFound();
             }
             return View(training);
+        }
+
+        public IActionResult ResetWarning(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            return View(id);
+        }
+
+        [HttpPost, ActionName("ResetConfirmed")]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetConfirmed(int? id)
+        {
+            if(!User.IsInRole("Admin") && !User.IsInRole("Tutor"))
+            {
+                return NotFound();
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //get all the lectures for this course
+            var lectures = _context.Lecture.Where(x => x.Course_Id == id).ToList();
+            _context.Lecture.RemoveRange(lectures);
+            //get the training item linked to this course
+            var training = _context.Training.Where(x => x.Course_Id == id).FirstOrDefault();
+            training.No_Of_lectures = 0;
+            _context.Training.Update(training);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = id });
         }
 
         // POST: Trainings/Edit/5

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using eLearning.Data;
+﻿using eLearning.Data;
 using eLearning.Models;
 using Microsoft.AspNetCore.Authorization;
-using System.Text;
-using System.Security.Cryptography;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace eLearning.Controllers
 {
@@ -77,7 +75,7 @@ namespace eLearning.Controllers
 
             foreach (var entry in user_course_entries)
             {
-                if(entry.CourseId == id)
+                if (entry.CourseId == id)
                 {
                     allowed = true;
                 }
@@ -103,7 +101,7 @@ namespace eLearning.Controllers
             {
                 return RedirectToAction("NotRegistered");
             }
-            
+
         }
 
         public IActionResult Redeem()
@@ -132,9 +130,9 @@ namespace eLearning.Controllers
 
                 var keys_in_database = _context.LicenseKey.ToList();
 
-                foreach(var k in keys_in_database)
+                foreach (var k in keys_in_database)
                 {
-                    if(k.Value == key && k.Used == false)
+                    if (k.Value == key && k.Used == false)
                     {
                         var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
                         //Key found. Mark it as USED and allow access
@@ -216,13 +214,14 @@ namespace eLearning.Controllers
                         _context.SaveChanges();
                     }
                 }
-                return RedirectToAction("Success","LicenseKeys", new { keys = new_licenses });
+                return RedirectToAction("Success", "LicenseKeys", new { keys = new_licenses });
 
-            }catch
+            }
+            catch
             {
                 return RedirectToAction("Error", "LicenseKeys");
             }
-            
+
         }
 
         public string GetMd5Hash(MD5 md5Hash, string input)

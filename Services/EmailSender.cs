@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eLearning.Services
 {
-    public class EmailSender: IEmailSender
+    public class EmailSender : IEmailSender
     {
         public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
         {

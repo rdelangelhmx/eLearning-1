@@ -243,6 +243,30 @@ namespace eLearning.Migrations
                     b.ToTable("Course");
                 });
 
+            modelBuilder.Entity("eLearning.Models.Lecture", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Course_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Index")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lecture_Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text_Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Lecture");
+                });
+
             modelBuilder.Entity("eLearning.Models.LicenseKey", b =>
                 {
                     b.Property<int>("Id")

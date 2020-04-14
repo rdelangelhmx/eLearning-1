@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using eLearning.Models;
 
 namespace eLearning.Data
 {
@@ -17,5 +13,6 @@ namespace eLearning.Data
         public DbSet<eLearning.Models.LicenseKey> LicenseKey { get; set; }
         public DbSet<eLearning.Models.UserCourse> UserCourse { get; set; }
         public DbSet<eLearning.Models.Training> Training { get; set; }
+        public DbSet<eLearning.Models.Lecture> Lecture { get; set; }
     }
 }
