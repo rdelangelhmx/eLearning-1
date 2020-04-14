@@ -19,11 +19,23 @@
 
                 <div class="card">
                     <div class="card-header" id="div_@(l.Lecture_Title)">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#div_@(l.Index)" aria-expanded="false" aria-controls="div_@(l.Index)">
+                        <h5 class="float-left">
+                            <button class="btn btn-link btn-lg" style="outline:none" data-toggle="collapse" data-target="#div_@(l.Index)" aria-expanded="false" aria-controls="div_@(l.Index)">
                                 @l.Lecture_Title
                             </button>
                         </h5>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
+                        {
+                            <form class="float-right">
+                                <input type="hidden" name="id" id="id" value="@l.Id" />
+                                <button class="btn btn-default btn-lg" style="color:red" asp-controller="Lectures" asp-action="Delete">Delete</button>
+                            </form>
+
+                            <form class="float-right" asp-controller="Lectures" asp-action="Edit" method="get">
+                                <input type="hidden" name="id" id="id" value="@l.Id" />
+                                <button class="btn btn-default btn-lg" type="submit">Edit this lecture</button>
+                            </form>
+                        }
                     </div>
 
                     <div id="div_@(l.Index)" class="collapse" aria-labelledby="div_@(l.Lecture_Title)" data-parent="#accordion">
@@ -41,7 +53,7 @@
             {
                 <form asp-controller="Trainings" asp-action="ResetWarning">
                     <button type="submit" class="btn btn-danger">Reset Materials Page</button>
-                    <input type="hidden" value="@Model.FirstOrDefault().Course_Id" name="id" id="id"/>
+                    <input type="hidden" value="@Model.FirstOrDefault().Course_Id" name="id" id="id" />
                 </form>
             }
         </div>
