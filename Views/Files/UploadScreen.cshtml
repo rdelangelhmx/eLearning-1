@@ -1,0 +1,60 @@
+﻿@model eLearning.Models.CourseLectureViewModel
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<form method="post" enctype="multipart/form-data" asp-controller="Files" asp-action="Upload">
+    
+    <div class="alert alert-warning rounded">
+        <h5><i class="fa fa-info-circle" aria-hidden="true"></i>  File Upload Guidelines</h5>
+        <h6>Supported filetypes:</h6>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <ul>
+                        <li>txt</li>
+                        <li>pdf</li>
+                        <li>doc</li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <ul>
+                        <li>docx</li>
+                        <li>xls</li>
+                        <li>xslx</li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <ul>
+                        <li>png</li>
+                        <li>jpg</li>
+                        <li>gif</li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <ul>
+                        <li>csv</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files:</p>
+            <input type="file" name="files" multiple />
+            <input type="hidden" name="course_id" value="@Model.Course_Id" />
+            <input type="hidden" name="lecture_id" value="@Model.Lecture_Id" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Upload" />
+        </div>
+    </div>
+</form>
+

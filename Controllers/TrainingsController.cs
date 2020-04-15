@@ -35,9 +35,25 @@ namespace eLearning.Controllers
 
             if(training.No_Of_lectures != 0)
             {
+                List<LectureContentViewModel> content = new List<LectureContentViewModel>();
+
                 //Get all the Lecture objects
                 var lectures = _context.Lecture.Where(x => x.Course_Id == id).ToList();
-                return View(lectures);
+
+                //Foreach lecture - get all of its files
+                foreach(var lecture in lectures)
+                {
+                    var files = _context.CourseResources.Where(x => x.Lecture_Id == lecture.Id).ToList();
+                    var obj = new LectureContentViewModel
+                    {
+                        Lecture = lecture,
+                        CourseResources = files
+                    };
+                    content.Add(obj);
+                }
+
+
+                return View(content);
             }
 
             var dummy_list = new Lecture

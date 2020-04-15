@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\Course_Resources\" />
   </ItemGroup>
 
 </Project>

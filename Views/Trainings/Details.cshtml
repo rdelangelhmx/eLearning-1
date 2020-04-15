@@ -1,11 +1,11 @@
-﻿@model List<eLearning.Models.Lecture>
+﻿@model List<eLearning.Models.LectureContentViewModel>
 
 @{
     ViewData["Title"] = "Training";
 }
 
 <div>
-    @if (Model.ElementAt(0).Text_Content != "dummy")
+    @if (Model.ElementAt(0).Lecture.Text_Content != "dummy")
     {
         <div class="text-center align-items-center">
             <br />
@@ -18,29 +18,77 @@
             {
 
                 <div class="card">
-                    <div class="card-header" id="div_@(l.Lecture_Title)">
+                    <div class="card-header" id="div_@(l.Lecture.Lecture_Title)">
                         <h5 class="float-left">
-                            <button class="btn btn-link btn-lg" style="outline:none" data-toggle="collapse" data-target="#div_@(l.Index)" aria-expanded="false" aria-controls="div_@(l.Index)">
-                                @l.Lecture_Title
+                            <button class="btn btn-link btn-lg" style="outline:none" data-toggle="collapse" data-target="#div_@(l.Lecture.Index)" aria-expanded="false" aria-controls="div_@(l.Lecture.Index)">
+                                @l.Lecture.Lecture_Title
                             </button>
                         </h5>
                         @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
                         {
-                            <form class="float-right">
-                                <input type="hidden" name="id" id="id" value="@l.Id" />
-                                <button class="btn btn-default btn-lg" style="color:red" asp-controller="Lectures" asp-action="Delete">Delete</button>
+
+                            <form class="float-right" asp-controller="Lectures" asp-action="Delete">
+                                <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
+                                <button class="btn btn-default btn-lg" style="color:red">Delete</button>
                             </form>
 
                             <form class="float-right" asp-controller="Lectures" asp-action="Edit" method="get">
-                                <input type="hidden" name="id" id="id" value="@l.Id" />
+                                <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
                                 <button class="btn btn-default btn-lg" type="submit">Edit this lecture</button>
                             </form>
+
+                            <form class="float-right" asp-controller="Files" asp-action="UploadScreen">
+                                <input type="hidden" name="lecture_id" value="@l.Lecture.Id" />
+                                <input type="hidden" name="course_id" value="@l.Lecture.Course_Id" />
+                                <button class="btn btn-default btn-lg">Upload Materials</button>
+                            </form>
+
                         }
                     </div>
 
-                    <div id="div_@(l.Index)" class="collapse" aria-labelledby="div_@(l.Lecture_Title)" data-parent="#accordion">
+                    <div id="div_@(l.Lecture.Index)" class="collapse" aria-labelledby="div_@(l.Lecture.Lecture_Title)" data-parent="#accordion">
                         <div class="card-body">
-                            @l.Text_Content
+
+                            <div>
+                                @l.Lecture.Text_Content
+                            </div>
+
+                            <br /><br />
+
+                            <div class="card-header rounded">
+                                <h5>Downloads section</h5>
+                                @if(l.CourseResources.Count == 0)
+                                {
+                                    <h6>No downloadable content for this lecture</h6>
+                                }
+                                @foreach (var f in l.CourseResources)
+                                {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <form asp-controller="Files" asp-action="Download">
+                                                    <input type="hidden" name="filename_on_server" value="@f.Generated_Name" />
+                                                    <input type="hidden" name="original_filename" value="@f.Original_Name" />
+                                                    <button class="btn btn-link"><i class="fa fa-cloud-download" aria-hidden="true"></i>  @f.Original_Name</button>
+                                                </form>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
+                                                {
+                                                    <form asp-controller="Files" asp-action="Delete">
+                                                        <input type="hidden" name="filename_on_server" value="@f.Generated_Name" />
+                                                        <input type="hidden" name="original_filename" value="@f.Original_Name" />
+                                                        <button class="btn btn-link"><i class="fa fa-trash" aria-hidden="true" style="color:red"></i></button>
+                                                    </form>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -53,7 +101,7 @@
             {
                 <form asp-controller="Trainings" asp-action="ResetWarning">
                     <button type="submit" class="btn btn-danger">Reset Materials Page</button>
-                    <input type="hidden" value="@Model.FirstOrDefault().Course_Id" name="id" id="id" />
+                    <input type="hidden" value="@Model.FirstOrDefault().Lecture.Course_Id" name="id" id="id" />
                 </form>
             }
         </div>
@@ -70,7 +118,7 @@
             {
                 <div class="text-center align-items-center pt-4 pb-4">
                     <h5 class="card-title py-3 text-black-50">You are the instructor</h5>
-                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Course_Id">CONFIGURE COURSE</a>
+                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
                 </div>
             }
 
@@ -78,7 +126,7 @@
             {
                 <div class="text-center align-items-center pt-4 pb-4">
                     <h5 class="card-title py-3 text-black-50">You are the administrator</h5>
-                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Course_Id">CONFIGURE COURSE</a>
+                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
                 </div>
             }
 

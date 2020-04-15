@@ -25,8 +25,8 @@ namespace eLearning.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("paul.vasile@ici.ro", Options.SendGridUser),
-                Subject = subject,
+                From = new EmailAddress("no-relpy@ici.ro", Options.SendGridUser),
+                Subject = "Your account on ICI e-learning",
                 PlainTextContent = message,
                 HtmlContent = message
             };

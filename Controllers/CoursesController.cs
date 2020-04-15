@@ -37,7 +37,7 @@ namespace eLearning.Controllers
             //Only show courses the user is registered
             //Get the list of courses
             var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id);
+            var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id).ToList();
             List<Course> registered_courses = new List<Course>();
 
             foreach (var entry in user_course_entries)
