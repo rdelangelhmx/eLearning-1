@@ -37,7 +37,6 @@
                margin-right: 20px;*/
                 max-height: 37px;
                 background-color: #E8E8E8;
-                
             }
 
             .push {
@@ -48,7 +47,6 @@
             li {
                 padding: 1.5px;
             }
-
         </style>
 
 
@@ -94,14 +92,47 @@
         </nav>
 
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            <br />
-            @RenderBody()
-        </main>
-    </div>
+    @{
+        string controller ="";
+        if(ViewContext.RouteData.Values["Controller"] != null)
+        {
+            controller = ViewContext.RouteData.Values["Controller"].ToString();
+        }
+        else
+        {
+            controller = null;
+        }
 
-    <footer class="border-top footer text-muted">
+        var action = ViewContext.RouteData.Values["Action"];
+
+
+
+
+        if (controller == "Home")
+        {
+        <div class="">
+            <main role="main" class="">
+               
+                @RenderBody()
+            </main>
+        </div>
+            
+        }
+        else {
+
+            <div class="container">
+                <main role="main" class="pb-3">
+                    <br />
+                    @RenderBody()
+                </main>
+            </div>
+            }
+        }
+
+
+
+
+    <footer class=" footer text-muted">
         <div class="container">
             &copy; 2020 - eLearning - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> | <a asp-area="" asp-controller="Home" asp-action="TermsAndConditions">Terms and Conditions</a>
         </div>
