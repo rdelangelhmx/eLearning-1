@@ -4,10 +4,10 @@
 }
 
 
-<h2 class="text-black-50 text-justify mt-3 mb-4">Promote user role</h2>
+<h2 class=" text-justify mt-3 mb-4" style="color:#00664d;">Promote user role</h2>
 
-<h4 class="text-black-50 text-justify mt-3 mb-4"> Email: @Model.Email</h4>
-<h4 class="text-black-50 text-justify mt-3 mb-4">Current Role: @Model.CurrentRole</h4>
+<h4 class=" text-justify mt-3 mb-4" style="color:#00664d;" > Email: <span class="text-black-50"> @Model.Email</span> </h4>
+<h4 class=" text-justify mt-3 mb-4" style="color:#00664d;">Current Role: <span class="text-black-50"> @Model.CurrentRole</span></h4>
 
 @if (Model.CurrentRole == "Student")
 {
@@ -32,4 +32,10 @@
     @Html.ActionLink("Demote to Tutor", "ChangeRole", "Administrator", new { email = Model.Email, role = "Tutor" }, new { @class = "btn btn-outline-secondary btn-rounded " })
 }
 
-
+<style>
+    .btn-outline-secondary {
+        background-color: #00664d !important;
+        border-color: #00664d;
+        color:white;
+    }
+</style>

@@ -2,28 +2,122 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="full_width">
-
-    <video class="col-12" autoplay loop muted style="filter: blur(2px); -webkit-filter: blur(2px);"><source src="~/images/ezgif.com-crop.mp4" /></video>
-
-    <div class="align-items-center text-center centered  container-fluid">
-
-        <img src="~/images/logo_ICI_60x108.png" style="height: 60px; width: 108px;" />
-
-        <div class="align-items-center">
-
-            <h2 class="text-white text-center">Gateway for eLearning Services</h2>
-            <h6 class="text-white text-center">Provided by ICI Bucharest for its registered members</h6>
-            <br />
-            <div class="align-items-center text-center">
-                <a class="btn btn-lg btn-outline-dark text-white" asp-controller="Courses" asp-action="Index">Start Learning</a>
+<header>
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="~/images/Futuristic - 896.mp4" type="video/mp4">
+    </video>
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <img src="~/images/logo_ICI_60x108.png" style="height: 60px; width: 108px;" />
+                <h3 class="display-4">Gateway for eLearning Services</h3>
+                <p class="lead mb-0">Provided by ICI Bucharest for its registered members</p>
+                <a class="nav-link  font-weight-bold text-white" asp-controller="Courses" asp-action="Index">Start Learning <i class="fas fa-play-circle"></i></a>
             </div>
         </div>
+    </div>
+</header>
+<!--Facebook/site/contact-->
+<div class="container mb-2" >
+    <h2 class="text-center mt-3" style="color: #00664d;">Join our community to receive</h2>
+    <div class="card-group">
+        <!--Facebook-->
+        <div class="card align-items-center">
+
+            <div class="card-body">
+               
+               <ul >
+                   <li class="font-weight-bold" style="color: #00664d;">
+                       Invitation to ICI-Bucharest Events and Conferences
+                   </li>
+                   <li  class="font-weight-bold" style="color: #00664d;">
+                       Exclusive Cyber Challenges and Opportunities
+                   </li>
+                   <li class="font-weight-bold" style="color: #00664d;">
+                       News about ICI-Bucharest activities
+                   </li>
+               </ul>
+
+            </div>
+        </div>
+        <!--Site ICI CARD-->
+        <div class="card  align-items-center">
+
+            <div class="card-body text-center d-inline-flex">
+                <a href="https://www.facebook.com/ICIBucuresti"><img height="80" width="80" src="~/images/Facebook_f_logo_(2019).svg" /></a>
+                <ul>
+                    <li class ="mt-1"style="list-style-type: none;"><i class="fab fa-internet-explorer"></i> site web: <a href="https://www.ici.ro/" >www.ici.ro</a></li>
+                    <li style="list-style-type: none;"><i class="far fa-envelope"></i> mail: <a href="mailto:cursuri@ici.ro">cursuri@ici.ro</a> </li>
+                    <li style="list-style-type: none;"><i class="fas fa-phone"></i> telefon: <a href="tel:+40 744 777 411">+40 744 777 411</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <!--Contact CARD-->
 
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
 <style>
+    header {
+  position: relative;
+  background-color: black;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+        header .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+    media (pointer:coarse) and (hover:none) {
+        header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+  }
+  header video {
+    display: none;
+  }
+}
+
 
     .full_width {
         position: relative;
@@ -32,42 +126,13 @@
         left: 0;
         right: 0;
         bottom: 0;
+       
+    }
+    .card {
+      
+    
+        border: none;
     }
 
-    /* Bottom left text */
-    .bottom-left {
-        position: absolute;
-        bottom: 8px;
-        left: 16px;
-    }
-
-    /* Top left text */
-    .top-left {
-        position: absolute;
-        top: 0;
-        left: 30px;
-        right: 30px;
-    }
-
-    /* Top right text */
-    .top-right {
-        position: absolute;
-        top: 8px;
-        right: 16px;
-    }
-
-    /* Bottom right text */
-    .bottom-right {
-        position: absolute;
-        bottom: 8px;
-        right: 16px;
-    }
-
-    /* Centered text */
-    .centered {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 </style>
+

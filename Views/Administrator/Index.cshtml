@@ -3,35 +3,31 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h2 class="text-black-50 text-justify mb-4 mt-3">Administrator Dashboard</h2>
-
-    <div class="align-content-center text-center">
-        <div class="card " style="width: 18rem;">
-
-            <a class="btn btn-block btn-info btn-rounded mr-3 mb-2" href="@Url.Action("ManageRolesSearchByEmail", "Administrator")">Change user privileges</a>
-
-        </div>
-        <div class="card" style="width: 18rem; ">
-
-            <a class="btn btn-block btn-info btn-rounded mr-3 mb-2" href="@Url.Action("Index", "Courses")">View all courses</a>
-
-        </div>
-
-        <div class="card" style="width: 18rem;">
-            <a class="btn btn-block btn-info btn-rounded mb-2" href="@Url.Action("Index","LicenseKeys")">View all license keys</a>
-
-
-        </div>
-
-    </div>
-
-<style>
-    .card{
-        border:none;
+<h2 class="text-center mb-4 mt-3" style="color:#00664d;">Administrator Dashboard</h2>
+<div class="d-flex justify-content-center">
+    <div class="col-md-4 ">
         
 
-    }
-</style>
+            <a class="btn btn-block  btn-rounded mr-3 mb-2 text-white" style="background-color:#00664d;" href="@Url.Action("ManageRolesSearchByEmail", "Administrator")">Change user privileges</a>
+
+      
+            <a class="btn btn-block btn-rounded mr-3 mb-2 text-white" style="background-color:#00664d;" href="@Url.Action("Index", "Courses")">View all courses</a>
+
+      
+
+      
+            <a class="btn btn-block  btn-rounded mb-2 text-white" style="background-color:#00664d;" href="@Url.Action("Index","LicenseKeys")">View all license keys</a>
+
+       
+
+    </div>
+    </div>
+
+    <style>
+        .card {
+            border: none;
+        }
+    </style>
 
 
 

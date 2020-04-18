@@ -2,27 +2,33 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ">
         @if (SignInManager.IsSignedIn(User))
         {
             <li class="nav-item">
-                <a class="btn-block btn btn-primary" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="background-color:#00664d"><i class="fa fa-user-circle" aria-hidden="true"></i>  <b>My account</b></a>
+                <a class="nav-link font-weight-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="color:#00664d"><i class="fa fa-user-circle" aria-hidden="true"></i> My account</a>
             </li>
+
             <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="btn-block btn btn-primary" style="background-color:#00664d"><i class="fa fa-sign-out" aria-hidden="true"></i>  <b>Logout</b></button>
+                <form id="my_form" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"class="nav-link font-weight-bold" style="color:#00664d"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                 </form>
             </li>
         }
         else
         {
             <li class="nav-item">
-                <a class="btn-block btn btn-primary" asp-area="Identity" asp-page="/Account/Login" style="background-color:#00664d"><i class="fa fa-sign-in" aria-hidden="true"></i><b>  Login</b></a>
+                <a class="nav-link font-weight-bold" asp-area="Identity" asp-page="/Account/Login" style="color:#00664d"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
             </li>
-
+           
             <li class="nav-item">
-                <a class="btn-block btn btn-primary" asp-area="Identity" asp-page="/Account/Register" style="background-color:#00664d"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><b>  Register</b></a>
+                <a class=" nav-link font-weight-bold" asp-area="Identity" asp-page="/Account/Register" style="color:#00664d"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Register</a>
             </li>
         }
     </ul>
 
+<style>
+    .btn-color{
+       background-color:#00664d !important;
+    }
+</style>

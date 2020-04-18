@@ -10,90 +10,47 @@
     <script src="https://kit.fontawesome.com/c5fb304c49.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="container-fluid border-bottom ">
+   
+    <!--NAVBAR-->
 
-            <div class="" style="margin-right:1.5%;">
 
-                <ul style="display:inline-flex;">
-                    <li style="list-style-type: none;">
-                        Contact:
-                    <li style="list-style-type: none;">
-                        <a class="btn btn-light btn-sm" href="mailto:cursuri@ici.ro"><i class="far fa-envelope"></i> cursuri@ici.ro</a>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid">
 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse mr-auto">
+
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index" style="color:#00664d"><i class="fas fa-home"></i> Home</a>
                     </li>
-                    <li style="list-style-type: none;">
 
+
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" asp-area="" asp-controller="Home" asp-action="News" style="color:#00664d"><i class="far fa-newspaper"></i> News</a>
                     </li>
-                    <li style="list-style-type: none;">
-                        <a class="btn btn-light btn-sm" href="tel:+40 744 777 411"><i class="fa fa-phone"></i> +40 744 777 411</a>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" asp-area="" asp-controller="Home" asp-action="UsageGuide" style="color:#00664d"><i class="fas fa-info-circle"></i> Support</a>
                     </li>
                 </ul>
+            </div>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
 
             </div>
-
         </div>
+    </nav>
 
-        <style>
-            .box {
-                display: flex;
-                /*margin-left: 10px;
-               margin-right: 20px;*/
-                max-height: 37px;
-                background-color: #E8E8E8;
-            }
-
-            .push {
-                margin-left: auto;
-                margin-top: 0.15%;
-            }
-
-            li {
-                padding: 1.5px;
-            }
-        </style>
-
-
-        <!--NAVBAR-->
-
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-            <div class="container-fluid">
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse mr-auto">
-
-                    <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index" style="color:#00664d">Home</a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="News" style="color:#00664d">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UsageGuide" style="color:#00664d">Support</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-
-                </div>
-            </div>
-        </nav>
-
-        @*<div class="alert-warning">
+    @*<div class="alert-warning">
             <span class="fas fa-exclamation-triangle" aria-hidden="true">  Warning! The platform is undergoing maintainance. Downtime can be experienced at any time.</span>
         </div>*@
 
-    </header>
+
     @{
         string controller = "";
         if (ViewContext.RouteData.Values["Controller"] != null)
@@ -129,9 +86,9 @@
     }
 
 
-    <footer class=" footer text-muted">
+    <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - eLearning - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> | <a asp-area="" asp-controller="Home" asp-action="TermsAndConditions">Terms and Conditions</a>
+            &copy; 2020 - eLearning - <a asp-area="" asp-controller="Home" asp-action="Privacy"  style="color:#00664d">Privacy</a> | <a asp-area="" asp-controller="Home" asp-action="TermsAndConditions"  style="color:#00664d">Terms and Conditions</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
