@@ -11,11 +11,13 @@
 </head>
 <body>
     <header>
-        <div class="box container-fluid border-bottom ">
+        <div class="container-fluid border-bottom ">
 
-            <div class="push" style="margin-right:1.5%;">
+            <div class="" style="margin-right:1.5%;">
 
                 <ul style="display:inline-flex;">
+                    <li style="list-style-type: none;">
+                        Contact:
                     <li style="list-style-type: none;">
                         <a class="btn btn-light btn-sm" href="mailto:cursuri@ici.ro"><i class="far fa-envelope"></i> cursuri@ici.ro</a>
 
@@ -55,7 +57,7 @@
         <!--NAVBAR-->
 
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -63,26 +65,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="d-sm-inline-flex flex-sm-row-reverse mr-auto">
-                    <a class="nav-link" href="@Url.Action("Index", "Home")">
-                        <img src="~/images/logo_ICI_60x108.png" style="height: 60px;width: 108px; margin-left:-1%;" />
-                    </a>
-                </div>
-
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse mr-auto">
 
-                    <ul class="navbar-nav flex-grow-1 ">
+                    <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><b>HOME</b></a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index" style="color:#00664d">Home</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="News"><b>NEWS</b></a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="News" style="color:#00664d">News</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UsageGuide"><b>SUPPORT</b></a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UsageGuide" style="color:#00664d">Support</a>
                         </li>
                     </ul>
                 </div>
@@ -92,14 +88,15 @@
                 </div>
             </div>
         </nav>
-        <div class="alert alert-warning" role="alert">
+
+        @*<div class="alert-warning">
             <span class="fas fa-exclamation-triangle" aria-hidden="true">  Warning! The platform is undergoing maintainance. Downtime can be experienced at any time.</span>
-        </div>
+        </div>*@
 
     </header>
     @{
-        string controller ="";
-        if(ViewContext.RouteData.Values["Controller"] != null)
+        string controller = "";
+        if (ViewContext.RouteData.Values["Controller"] != null)
         {
             controller = ViewContext.RouteData.Values["Controller"].ToString();
         }
@@ -110,20 +107,17 @@
 
         var action = ViewContext.RouteData.Values["Action"];
 
-
-
-
         if (controller == "Home")
         {
-        <div class="">
-            <main role="main" class="">
-               
-                @RenderBody()
-            </main>
-        </div>
-            
+            <div class="">
+                <main role="main" class="">
+                    @RenderBody()
+                </main>
+            </div>
+
         }
-        else {
+        else
+        {
 
             <div class="container">
                 <main role="main" class="pb-3">
@@ -131,10 +125,8 @@
                     @RenderBody()
                 </main>
             </div>
-            }
         }
-
-
+    }
 
 
     <footer class=" footer text-muted">
@@ -150,5 +142,5 @@
 </html>
 
 @{
-    
+
 }

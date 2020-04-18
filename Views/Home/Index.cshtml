@@ -1,31 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-    <div class="full_width">
-        <video class=""  autoplay loop muted style="width:100%;"><source src="~/images/ezgif.com-crop.mp4" /></video> 
-        
-        <div class="top-left align-items-center">
-            <h2 class="text-white text-center pb-2 ">Welcome to ICI Platform</h2>
-            <div class="align-items-center text-center pt-1">
-                <a class="btn btn-lg btn-outline-dark text-white" asp-controller="Courses" asp-action="Index">Start your learning experience</a>
+
+<div class="full_width">
+
+    <video class="col-12" autoplay loop muted style="filter: blur(2px); -webkit-filter: blur(2px);"><source src="~/images/ezgif.com-crop.mp4" /></video>
+
+    <div class="align-items-center text-center centered  container-fluid">
+
+        <img src="~/images/logo_ICI_60x108.png" style="height: 60px; width: 108px;" />
+
+        <div class="align-items-center">
+
+            <h2 class="text-white text-center">Gateway for eLearning Services</h2>
+            <h6 class="text-white text-center">Provided by ICI Bucharest for its registered members</h6>
+            <br />
+            <div class="align-items-center text-center">
+                <a class="btn btn-lg btn-outline-dark text-white" asp-controller="Courses" asp-action="Index">Start Learning</a>
             </div>
         </div>
+
     </div>
+</div>
+
 <style>
+
     .full_width {
-      
-        position:relative;
+        position: relative;
         margin: 0;
         top: 0;
         left: 0;
         right: 0;
-        bottom:0;
-       
-      
-       
-        
+        bottom: 0;
     }
-  
+
     /* Bottom left text */
     .bottom-left {
         position: absolute;
@@ -36,10 +44,9 @@
     /* Top left text */
     .top-left {
         position: absolute;
-        top: 30%;
+        top: 0;
         left: 30px;
-        right:30px;
-        
+        right: 30px;
     }
 
     /* Top right text */
@@ -63,107 +70,4 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
 </style>
-
-        <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-            <div>
-                <h6 class="pink-text"><i class="fa fa-graduation-cap"></i><strong></strong></h6>
-                <h3 class="card-title py-3 font-weight-bold"><strong>Learning materials</strong></h3>
-                <p class="pb-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                    optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                    Odit sed qui, dolorum!
-                </p>
-                @*<a class="btn btn-info btn-rounded"><i class=""></i> Find more</a>*@
-            </div>
-
-
-
-
-<!--
-        <div>
-            <video autoplay muted loop id="myVideo">
-                <source src="~/images/Black - 13495.mp4" type="video/mp4">
-            </video>
-        </div>
-
-
-<style>
-    #myVideo {
-        position:fixed;
-        top:130px;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-
-    }
-</style>
-        <!--First element with picture
-    <div class="text-black-50 text-center align-items-center rgba-black-strong py-5 px-4 content">
-        <div>
-            <h3 class="card-title py-3 font-weight-bold"><strong>Welcome to ICI-Learning platform</strong></h3>
-            <p class="pb-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                Odit sed qui, dolorum!
-            </p>
-            <a class="btn btn-lg btn-light" asp-controller="Courses" asp-action="Index">Start your learning experience</a>
-        </div>
-    </div>
-
-
-    <div class="card-deck">
-        <div class="card card-image" style="background-color: white;">
-
-            <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                <div>
-                    <h6 class="pink-text"><i class="fa fa-graduation-cap"></i><strong></strong></h6>
-                    <h3 class="card-title py-3 font-weight-bold"><strong>Learning materials</strong></h3>
-                    <p class="pb-3">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                        Odit sed qui, dolorum!
-                    </p>
-                    <a class="btn btn-info btn-rounded"><i class=""></i> Find more</a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card card-image" style="background-color:white;">
-            <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                <div>
-                    <h6 class="green-text"><i class="fa fa-user-graduate"></i><strong> </strong></h6>
-                    <h3 class="card-title py-3 font-weight-bold"><strong>Exercises</strong></h3>
-                    <p class="pb-3">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                        Odit sed qui, dolorum!
-                    </p>
-                    <a class="btn btn-info btn-rounded"><i class=""></i>Find more</a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card card-image" style="background-color: white;">
-            <div class="text-black-50 text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                <div>
-                    <h6 class="pink-text"><i class="fas fa-chart-pie"></i><strong></strong></h6>
-                    <h3 class="card-title py-3 font-weight-bold"><strong>Scenarios</strong></h3>
-                    <p class="pb-3">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                        Odit sed qui, dolorum!
-                    </p>
-                    <a class="btn btn-info btn-rounded"><i class=""></i> Find more</a>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-        -->
