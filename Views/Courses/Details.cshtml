@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Details";
 }
-<body>
-    <div class="row mt-5">
+<body style="height:100%;">
+    <div class="row">
         <div class="col-8">
             <ul class="list-group">
                 <li class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Course Details</li>
@@ -34,9 +34,9 @@
                 </li>
             </ul>
         </div>
-        <div class="col-4">
+        <div class="col-4" style="height:100%;">
 
-            <div class="list-group">
+            <div class="list-group" style="height:100%;">
                 <div class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Student resources</div>
                 <a class="list-group-item list-group-item-action " asp-controller="Trainings" asp-action="Details" asp-route-id="@Model.Id">TRAINING</a>
                 <a class="list-group-item list-group-item-action ">EVALUATION</a>
