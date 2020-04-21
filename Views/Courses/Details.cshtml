@@ -3,107 +3,177 @@
 @{
     ViewData["Title"] = "Details";
 }
-<body style="height:100%;">
-    <div class="row">
-        <div class="col-8">
-            <ul class="list-group">
-                <li class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Course Details</li>
-                <li class="list-group-item d-flex justify-content-md-between align-items-center">
-                    @Html.DisplayNameFor(model => model.Name)
-                    <span class=""> @Html.DisplayFor(model => model.Name)</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-md-between align-items-center">
-                    Starting Date
-                    <span class=""> @Html.DisplayFor(model => model.StartingDate)</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-md-between  align-items-center">
-                    Ending Date
-                    <span class=""> @Html.DisplayFor(model => model.EndingDate)</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-md-between align-items-center">
-                    Certificate
-                    @if (Model.HasCertificate == false)
-                    {
-                        <span class="">NO</span>
-                    }
-                    else
-                    {
-                        <span class="">YES</span>
-                    }
-
-                </li>
-            </ul>
-        </div>
-        <div class="col-4" style="height:100%;">
-
-            <div class="list-group" style="height:100%;">
-                <div class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Student resources</div>
-                <a class="list-group-item list-group-item-action " asp-controller="Trainings" asp-action="Details" asp-route-id="@Model.Id">TRAINING</a>
-                <a class="list-group-item list-group-item-action ">EVALUATION</a>
-                <a class="list-group-item list-group-item-action"><i class=""></i>CERTIFICATE</a>
-                <a class="list-group-item list-group-item-action" asp-action="Index">BACK TO COURSES</a>
+    <h2 class="" style="color: #00664d;">Course details</h2>
+    <hr />
+    <div class="card">
+        <div class="">
+            <div class="ml-2 mt-2">
+                <h5 class="text-black mb-3">Name of the course:  <h7 class="text-black-50">@Html.DisplayFor(model => model.Name)</h7> </h5>
+                <h5 class="text-black  mb-3">Starting Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.StartingDate)</h7></h5>
+                <h5 class="text-black mb-3">Ending Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.EndingDate)</h7></h5>
+                @if (Model.HasCertificate == false)
+                {
+                    <h5 class="text-black  mb-3">Has Certificate:  <h7 class="text-black-50">NO</h7></h5>
+                }
+                else
+                {
+                    <h5 class="text-black  mb-4">Has Certificate:  <h7 class="text-black-50">YES</h7></h5>
+                }
             </div>
+            <h2 class="mt-1" style="color: #00664d;">Student resources</h2>
+            <hr />
+            <div class="list-group d-flex">
+                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fas fa-laptop-code"></i> Training</a>
+                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fab fa-leanpub"></i> Evaluation</a>
+                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fas fa-graduation-cap"></i> Certificate</a>
+                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fas fa-arrow-circle-left"></i> Go back</a>
 
+            </div>
+        </div>
+    </div>
+<style>
+    .card{
+        border:none;
+    }
+</style>
+    @*<div class="container-fluid d-inline-flex">
+        <div id="mySidenav" class="sidenav text-center mt-2">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Training</a>
+            <a href="#">Evaluation</a>
+            <a href="#">Certificate</a>
+
+        </div>
+
+        <div id="main">
+            <h2 style="color: #00664d;">Course details</h2>
+            <h5 class="text-black">Name of the course:  <h7 class="text-black-50">@Html.DisplayFor(model => model.Name)</h7> </h5>
+            <h5 class="text-black">Starting Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.StartingDate)</h7></h5>
+            <h5 class="text-black">Ending Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.EndingDate)</h7></h5>
+            @if (Model.HasCertificate == false)
+            {
+                <h5 class="text-black">Has Certificate:  <h7 class="text-black-50">NO</h7></h5>
+            }
+            else
+            {
+                <h5 class="text-black">Has Certificate:  <h7 class="text-black-50">YES</h7></h5>
+            }
+
+            <span style="font-size:25px;cursor:pointer; color: #00664d;" onclick="openNav()">&#9776; <b>Resources</b></span>
         </div>
     </div>
 
 
 
 
-</body>
-<!--
+        <style>
 
- <div class="card card-image" style="background-color: white;">
+            .sidenav {
+                height: 100%;
+                width: 0;
+                position: relative;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #00664d;
+                
+                overflow-x: hidden;
+                transition: 0.5s;
+                padding-top: 60px;
+            }
 
-                 <div class="text-black-50 d-flex align-items-center rgba-black-strong py-5 px-4">
-                     <div>
-                         <h3 class="card-title text-center  py-2 font-weight-bold"><strong>Course details</strong></h3>
-                         <hr />
-                         <div>
+                .sidenav a {
+                    padding-bottom:32px;
+                    text-decoration: none;
+                    font-size: 25px;
+                    color: white;
+                    display: block;
+                    transition: 0.3s;
+                }
 
-                             <dl class="row">
-                                 <dt class="col-sm-3">
-                                     @Html.DisplayNameFor(model => model.Name)
-                                 </dt>
-                                 <dd class="col-sm-11">
-                                     @Html.DisplayFor(model => model.Name)
-                                 </dd>
-                                 <dt class="col-sm-3">
-                                     @Html.DisplayNameFor(model => model.StartingDate)
-                                 </dt>
-                                 <dd class="col-sm-11">
-                                     @Html.DisplayFor(model => model.StartingDate)
-                                 </dd>
-                                 <dt class="col-sm-3">
-                                     @Html.DisplayNameFor(model => model.EndingDate)
-                                 </dt>
-                                 <dd class="col-sm-11">
-                                     @Html.DisplayFor(model => model.EndingDate)
-                                 </dd>
-                                 <dt class="col-sm-3">
-                                     @Html.DisplayNameFor(model => model.HasCertificate)
-                                 </dt>
-                                 <dd class="col-sm-11">
-                                     @Html.DisplayFor(model => model.HasCertificate)
+                    .sidenav a:hover {
+                        color: white;
+                    }
 
-                                 </dd>
+                .sidenav .closebtn {
+                    position: absolute;
+                    top: 0;
+                    right: 25px;
+                    font-size: 36px;
+                    margin-left: 25px;
+                }
 
-                             </dl>
+            #main {
+                transition: margin-left .5s;
+                padding: 16px;
+            }
+
+            media screen and (max-height: 450px) {
+                .sidenav
+
+            {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+            }
+        </style>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "300px";
+                document.getElementById("main").style.marginLeft = "30px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>*@
+ 
+
+        @*<div class="row">
+            <div class="col-8">
+                <ul class="list-group">
+                    <li class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Course Details</li>
+                    <li class="list-group-item d-flex justify-content-md-between align-items-center">
+                        @Html.DisplayNameFor(model => model.Name)
+                        <span class=""> @Html.DisplayFor(model => model.Name)</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-md-between align-items-center">
+                        Starting Date
+                        <span class=""> @Html.DisplayFor(model => model.StartingDate)</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-md-between  align-items-center">
+                        Ending Date
+                        <span class=""> @Html.DisplayFor(model => model.EndingDate)</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-md-between align-items-center">
+                        Certificate
+                        @if (Model.HasCertificate == false)
+                        {
+                            <span class="">NO</span>
+                        }
+                        else
+                        {
+                            <span class="">YES</span>
+                        }
+
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4" style="height:100%;">
+
+                <div class="list-group" style="height:100%;">
+                    <div class="list-group-item text-center text-black-50 font-weight-bold " style="background-color:#a6a6a6; font-size:1em;">Student resources</div>
+                    <a class="list-group-item list-group-item-action " asp-controller="Trainings" asp-action="Details" asp-route-id="@Model.Id">TRAINING</a>
+                    <a class="list-group-item list-group-item-action ">EVALUATION</a>
+                    <a class="list-group-item list-group-item-action"><i class=""></i>CERTIFICATE</a>
+                    <a class="list-group-item list-group-item-action" asp-action="Index">BACK TO COURSES</a>
+                </div>
+
+            </div>
+        </div>*@
 
 
-                         </div>
-
-                         <div class="text-center">
-                             @if (User.IsInRole("Admin"))
-                             {
-                                 <a class="btn btn-light btn-rounded text-black-50" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                             }
-                             <a class="btn btn-light btn-rounded text-black-50" asp-action="Index">Back to List</a>
-                         </div>
-                         <br />
-                     </div>
-
-                 </div>
-
-
-             </div>-->
