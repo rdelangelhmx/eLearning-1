@@ -59,10 +59,10 @@ else
                     <td>
                         @if (User.IsInRole("Admin"))
                         {
-                            <a class="text-dark" asp-action="Edit" asp-route-id="@item.Id">Edit |</a> 
-                            <a class="text-dark" asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                            <a class="text-dark" style="text-decoration:none;" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit  </a> 
+                            <a class="text-dark"  style="text-decoration:none;" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Delete  </a>
                         }
-                        <a class="text-dark" asp-action="Details" asp-route-id="@item.Id">Go to course page</a>
+                        <a class="text-dark"  style="text-decoration:none;" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-sign-out"></i> Go to course page</a>
 
                     </td>
                 </tr>

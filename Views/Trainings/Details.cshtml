@@ -9,7 +9,8 @@
     {
         <div class="text-center align-items-center">
             <br />
-            <h3 class="text-black-50">Your Materials</h3>
+            <h3 class="" style="color: #00664d;">Your Materials</h3>
+            <hr/>
             <br />
         </div>
 
@@ -18,10 +19,10 @@
             {
 
                 <div class="card">
-                    <div class="card-header" id="div_@(l.Lecture.Lecture_Title)">
-                        <h5 class="float-left">
-                            <button class="btn btn-link btn-lg" style="outline:none" data-toggle="collapse" data-target="#div_@(l.Lecture.Index)" aria-expanded="false" aria-controls="div_@(l.Lecture.Index)">
-                                @l.Lecture.Lecture_Title
+                    <div class="card-header" style="background-color:#00664d;" id="div_@(l.Lecture.Lecture_Title)">
+                        <h5 class="float-left text-white">
+                            <button class="btn btn-link text-white btn-lg" style="outline:none; text-decoration:none;" data-toggle="collapse" data-target="#div_@(l.Lecture.Index)" aria-expanded="false" aria-controls="div_@(l.Lecture.Index)">
+                                <i class="fas fa-book-reader"></i> @l.Lecture.Lecture_Title
                             </button>
                         </h5>
                         @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
@@ -29,18 +30,18 @@
 
                             <form class="float-right" asp-controller="Lectures" asp-action="Delete">
                                 <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
-                                <button class="btn btn-default btn-lg" style="color:red">Delete</button>
+                                <button class="btn btn-lg btn-link text-white" style="text-decoration:none;"><i class="fas fa-trash" style="color:#ff0000;"></i> Delete</button>
                             </form>
 
                             <form class="float-right" asp-controller="Lectures" asp-action="Edit" method="get">
                                 <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
-                                <button class="btn btn-default btn-lg" type="submit">Edit this lecture</button>
+                                <button class="btn btn-link text-white btn-lg" style="text-decoration:none;" type="submit"><i class="fas fa-edit"></i>Edit this lecture</button>
                             </form>
 
                             <form class="float-right" asp-controller="Files" asp-action="UploadScreen">
                                 <input type="hidden" name="lecture_id" value="@l.Lecture.Id" />
                                 <input type="hidden" name="course_id" value="@l.Lecture.Course_Id" />
-                                <button class="btn btn-default btn-lg">Upload Materials</button>
+                                <button class="btn btn-link text-white btn-lg" style="text-decoration:none;"><i class="fas fa-file-upload"></i> Upload Materials</button>
                             </form>
 
                         }
@@ -49,17 +50,17 @@
                     <div id="div_@(l.Lecture.Index)" class="collapse" aria-labelledby="div_@(l.Lecture.Lecture_Title)" data-parent="#accordion">
                         <div class="card-body">
 
-                            <div>
+                            <div style="color: #00664d;">
                                 @l.Lecture.Text_Content
                             </div>
 
-                            <br /><br />
+                            <br />
 
                             <div class="card-header rounded">
-                                <h5>Downloads section</h5>
+                                <h5 style="color: #00664d;">Downloads section</h5>
                                 @if(l.CourseResources.Count == 0)
                                 {
-                                    <h6>No downloadable content for this lecture</h6>
+                                    <h6 style="color: #00664d;">No downloadable content for this lecture</h6>
                                 }
                                 @foreach (var f in l.CourseResources)
                                 {
@@ -110,23 +111,23 @@
     {
         <div class="container-fluid">
 
-            <div class="text-center align-items-center pt-4 pb-4">
-                <h4 class="card-title py-3 text-black-50"> The training section has not been setup yet </h4>
+            <div class="text-center align-items-center pt-4 pb-2">
+                <h4 class="card-title py-3" style="color: #00664d;" > The training section has not been setup yet </h4>
             </div>
 
             @if (User.IsInRole("Tutor"))
             {
-                <div class="text-center align-items-center pt-4 pb-4">
-                    <h5 class="card-title py-3 text-black-50">You are the instructor</h5>
-                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
+                <div class="text-center align-items-center pb-4">
+                    <h5 class="card-title py-3" style="color: #00664d;">Status: INSTRUCTOR</h5>
+                    <a class="btn text-white btn-lg" style="background-color: #00664d;" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
                 </div>
             }
 
             @if (User.IsInRole("Admin"))
             {
-                <div class="text-center align-items-center pt-4 pb-4">
-                    <h5 class="card-title py-3 text-black-50">You are the administrator</h5>
-                    <a class="btn btn-light btn-lg btn-block" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
+                <div class="text-center align-items-center pb-4">
+                    <h5 class="card-title py-3" style="color: #00664d;">Status: ADMINISTRATOR</h5>
+                    <a class="btn text-white btn-lg" style="background-color: #00664d;" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
                 </div>
             }
 
