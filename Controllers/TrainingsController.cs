@@ -56,12 +56,19 @@ namespace eLearning.Controllers
                 return View(content);
             }
 
-            var dummy_list = new Lecture
+            var dummy_lecture = new Lecture
             {
                 Course_Id = id.GetValueOrDefault(),
                 Text_Content = "dummy"
             };
-            var l = new List<Lecture>();
+
+            var dummy_list = new LectureContentViewModel
+            {
+                Lecture = dummy_lecture,
+                CourseResources = null
+            };
+
+            var l = new List<LectureContentViewModel>();
             l.Add(dummy_list);
             return View(l);
         }
