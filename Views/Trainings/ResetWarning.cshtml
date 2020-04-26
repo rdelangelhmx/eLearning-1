@@ -3,13 +3,14 @@
     ViewData["Title"] = "Reset Materials";
 }
 
-<h1>Reset and delete</h1>
 
-<h3>Are you sure you want to delete all the materials?</h3>
-<h5>This action can not be reverted</h5>
-<div>
-    <form asp-action="ResetConfirmed" method="post">
-        <input type="hidden" value="@Model" name="id" id="id" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-    </form>
-</div>
+    
+        <h3 class="text-center mt-3" style="color:#b30000;">Are you sure you want to delete all the materials?</h3>
+        <h5 class="text-center mt-3 mb-4" style="color:#b30000;">This action can not be reverted</h5>
+        <div class="w-25 mt-2" style=" margin:0 auto;">
+            <form asp-action="ResetConfirmed" method="post">
+                <input type="hidden" value="@Model" name="id" id="id" />
+                <input type="submit" value="Delete" class="btn btn-danger btn-block" />
+            </form>
+        </div>
+    
