@@ -13,7 +13,7 @@ namespace eLearning.Services
             Options = optionsAccessor.Value;
         }
 
-        public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
+        public AuthMessageSenderOptions Options { get; }
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
@@ -22,7 +22,7 @@ namespace eLearning.Services
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
-            var client = new SendGridClient(apiKey);
+            var client = new SendGridClient("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");
             var msg = new SendGridMessage()
             {
                 From = new EmailAddress("no-relpy@ici.ro", Options.SendGridUser),
