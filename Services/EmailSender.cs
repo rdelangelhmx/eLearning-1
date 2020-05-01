@@ -22,7 +22,7 @@ namespace eLearning.Services
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
-            var client = new SendGridClient("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");
+            var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
                 From = new EmailAddress("no-relpy@ici.ro", Options.SendGridUser),
