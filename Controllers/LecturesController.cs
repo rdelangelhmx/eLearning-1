@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eLearning.Data;
 using eLearning.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace eLearning.Controllers
 {
     public class LecturesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LecturesController(ApplicationDbContext context)
+        public LecturesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Lectures/Details/5
@@ -110,21 +113,22 @@ namespace eLearning.Controllers
             return View(lecture);
         }
 
-        // GET: Lectures/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: Lectures/Add
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add([Bind("Id,Course_Id,Text_Content,Index,Lecture_Title")] Lecture lecture)
         {
-            if (id == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                lecture.Owner_ID = _userManager.GetUserId(User);
+                _context.Add(lecture);
+                //Increment lecture counter in Training
+                var train = _context.Training.Where(x => x.Course_Id == lecture.Course_Id).FirstOrDefault();
+                train.No_Of_lectures++;
+                _context.Training.Update(train);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details","Trainings", new { id = lecture.Course_Id} );
             }
-
-            var lecture = await _context.Lecture
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (lecture == null)
-            {
-                return NotFound();
-            }
-
             return View(lecture);
         }
 
@@ -133,7 +137,15 @@ namespace eLearning.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var owner_id = _userManager.GetUserId(User);
+
             var lecture = await _context.Lecture.FindAsync(id);
+
+            if (owner_id != lecture.Owner_ID)
+            {
+                return Forbid();
+            }
+
             _context.Lecture.Remove(lecture);
             //Get the Training Item assigned to this course
             var train = _context.Training.Where(x => x.Course_Id == lecture.Course_Id).FirstOrDefault();

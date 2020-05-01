@@ -22,29 +22,26 @@
             </div>
             <h2 class="mt-1 text-color" >Student resources</h2>
             <hr />
-            <div class="list-group d-flex">
+            <div class="list-group d-flex text-color">
 
                 <form asp-action="Details" asp-controller="Trainings" method="get">
                     <button type="submit" class="nav-link btn btn-link font-weight-bold button-layout" ><i class="fas fa-laptop-code"></i> Training</button>
                     <input type="hidden" name="id" value="@Model.Id" />
                 </form>
-                
-                <a class="nav-link font-weight-bold button-layout" href="#" ><i class="fab fa-leanpub"></i> Evaluation</a>
-                <a class="nav-link font-weight-bold button-layout" href="#" ><i class="fas fa-graduation-cap"></i> Certificate</a>
-                <a class="nav-link font-weight-bold button-layout" href="#"><i class="fas fa-arrow-circle-left"></i> Go back</a>
 
                 <a class="nav-link font-weight-bold disabled" href="#" style="color:dimgray"><i class="fab fa-leanpub"></i> Evaluation - not available yet</a>
                 <a class="nav-link font-weight-bold disabled" href="#" style="color:dimgrey"><i class="fas fa-graduation-cap"></i> Certificate - not available yet</a>
-                <a class="nav-link font-weight-bold" asp-controller="Courses" asp-action="Index" style="color:#00664d"><i class="fas fa-arrow-circle-left"></i> Go back</a>
+                <a class="nav-link font-weight-bold text-color" asp-controller="Courses" asp-action="Index" style="color:#00664d"><i class="fas fa-arrow-circle-left"></i> Go back</a>
 
             </div>
             @if (User.IsInRole("Admin"))
             {
-                <h2 class="mt-1" style="color: #00664d;">Admin resources</h2>
+                <br />
+                <h2 class="mt-1 text-color" style="color: #00664d;">Admin resources</h2>
                 <hr />
                 <div class="list-group d-flex">
                     <form asp-action="GenerateKey" asp-controller="Courses" method="get">
-                        <button type="submit" class="btn-link btn font-weight-bold" style="color:#00664d; text-decoration:none;"><i class="fas fa-key"></i> Generate license keys for this course</button>
+                        <button type="submit" class="btn-link btn font-weight-bold text-color" style="color:#00664d; text-decoration:none;"><i class="fas fa-key"></i> Generate license keys for this course</button>
                         <input type="hidden" name="id" value="@Model.Id" />
                     </form>
                 </div>

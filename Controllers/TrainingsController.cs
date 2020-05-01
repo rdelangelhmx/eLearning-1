@@ -1,5 +1,6 @@
 ﻿using eLearning.Data;
 using eLearning.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,10 +13,12 @@ namespace eLearning.Controllers
     public class TrainingsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public TrainingsController(ApplicationDbContext context)
+        public TrainingsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Trainings/Details/5
@@ -96,14 +99,15 @@ namespace eLearning.Controllers
         public IActionResult Configure(int course_id, int no_of_lectures)
         {
             //Create all the lecture objects and store them in the database
-            for(int i=0; i<no_of_lectures; i++)
+            for (int i=0; i<no_of_lectures; i++)
             {
                 var lecture = new Lecture
                 {
                     Course_Id = course_id,
                     Text_Content = "Not setup yet",
                     Lecture_Title = "Lecture " + (i+1).ToString(),
-                    Index = (i+1).ToString()
+                    Index = (i+1).ToString(),
+                    Owner_ID = _userManager.GetUserId(User)
                 };
                 _context.Lecture.Add(lecture);
                 _context.SaveChanges();

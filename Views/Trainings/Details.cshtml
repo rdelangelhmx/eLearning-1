@@ -9,7 +9,7 @@
     {
         <div class="text-center align-items-center">
             <br />
-            <h3 class="text-color" >Your Materials</h3>
+            <h3 class="text-color">Your Materials</h3>
             <hr />
             <br />
         </div>
@@ -30,18 +30,18 @@
 
                             <form class="float-right" asp-controller="Lectures" asp-action="Delete">
                                 <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
-                                <button class="btn btn-lg btn-link button-layout" ><i class="fas fa-trash" style="color:#ff0000;"></i> Delete</button>
+                                <button class="btn btn-lg btn-link button-layout"><i class="fas fa-trash" style="color:#ff0000;"></i> Delete</button>
                             </form>
 
                             <form class="float-right" asp-controller="Lectures" asp-action="Edit" method="get">
                                 <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
-                                <button class="btn btn-link button-layout btn-lg"  type="submit"><i class="fas fa-edit"></i>Edit this lecture</button>
+                                <button class="btn btn-link button-layout btn-lg" type="submit"><i class="fas fa-edit"></i>Edit this lecture</button>
                             </form>
 
                             <form class="float-right" asp-controller="Files" asp-action="UploadScreen">
                                 <input type="hidden" name="lecture_id" value="@l.Lecture.Id" />
                                 <input type="hidden" name="course_id" value="@l.Lecture.Course_Id" />
-                                <button class="btn btn-link button-layout btn-lg" ><i class="fas fa-file-upload"></i> Upload Materials</button>
+                                <button class="btn btn-link button-layout btn-lg"><i class="fas fa-file-upload"></i> Upload Materials</button>
                             </form>
 
                         }
@@ -100,7 +100,20 @@
 
             @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
             {
+                <form asp-controller="Lectures" asp-action="Add">
+                    <button type="submit" class="btn"><i class="fas fa-plus-circle"></i>  Add another lecture</button>
+                    <input type="hidden" value="@Model.FirstOrDefault().Lecture.Course_Id" name="Course_Id" />
+                    <input type="hidden" value="Not setup yet" name="Text_Content" />
+                    <input type="hidden" value="@(Model.Count()+1)" name="Index" />
+                    <input type="hidden" value="New Lecture" name="Lecture_Title" />
+                </form>
+
+
+                <br />
+
+
                 <form asp-controller="Trainings" asp-action="ResetWarning">
+
                     <button type="submit" class="btn btn-danger">Reset Materials Page</button>
                     <input type="hidden" value="@Model.FirstOrDefault().Lecture.Course_Id" name="id" id="id" />
                 </form>
@@ -112,22 +125,22 @@
         <div class="container-fluid">
 
             <div class="text-center align-items-center pt-4 pb-2">
-                <h4 class="card-title py-3 text-color" > The training section has not been setup yet </h4>
+                <h4 class="card-title py-3 text-color"> The training section has not been setup yet </h4>
             </div>
 
             @if (User.IsInRole("Tutor"))
             {
                 <div class="text-center align-items-center pb-4">
-                    <h5 class="card-title py-3 text-color" >Status: INSTRUCTOR</h5>
-                    <a class="btn button-color btn-rounded btn-lg"  asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
+                    <h5 class="card-title py-3 text-color">Status: INSTRUCTOR</h5>
+                    <a class="btn button-color btn-rounded btn-lg" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
                 </div>
             }
 
             @if (User.IsInRole("Admin"))
             {
                 <div class="text-center align-items-center pb-4">
-                    <h5 class="card-title py-3 text-color" >Status: ADMINISTRATOR</h5>
-                    <a class="btn button-color btn-rounded btn-lg"  asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
+                    <h5 class="card-title py-3 text-color">Status: ADMINISTRATOR</h5>
+                    <a class="btn button-color btn-rounded btn-lg" asp-controller="Trainings" asp-action="Configure" asp-route-id="@Model.ElementAt(0).Lecture.Course_Id">CONFIGURE COURSE</a>
                 </div>
             }
 
@@ -141,8 +154,9 @@
 
     .button-layout {
         color: white;
-        text-decoration:none;
+        text-decoration: none;
     }
+
     .button-color {
         color: white;
         background-color: #004d99;
