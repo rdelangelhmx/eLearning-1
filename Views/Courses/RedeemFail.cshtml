@@ -3,16 +3,26 @@
     ViewData["Title"] = "RedeemFail";
 }
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <div class="text-center align-items-center ">
-            <br />
-            <h3 class="" style="color:#b30000;"> We were not enable to validate your key </h3>
-            <div>
-                <img class="h-25 w-25" src="~/images/failed.png"/>
-            </div>
-            <a class="btn text-white btn-rounded" style="background-color:#00664d;" href="@Url.Action("Index","Courses")">Back to courses</a>
-
+    <div class="text-center align-items-center ">
+        <br />
+        <h3 class="text-color" > We were not enable to validate your key </h3>
+        <div>
+            <img class="h-25 w-25" src="~/images/failed.png" />
         </div>
+        <a class="btn button-layout btn-rounded"  href="@Url.Action("Index","Courses")">Back to courses</a>
 
     </div>
+
+</div>
+<style>
+    .text-color {
+        color: #b30000;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>

@@ -6,7 +6,7 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h5 style="color:#00664d;" class="mb-2">@ViewData["Title"]</h5>
+<h5 class="mb-2 text-color">@ViewData["Title"]</h5>
 @if (Model.Is2faEnabled)
 {
     if (Model.RecoveryCodesLeft == 0)
@@ -41,17 +41,28 @@
     <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Reset recovery codes</a>
 }
 
-<h5 style="color:#00664d;" class="mb-2">Authenticator app</h5>
+<h5  class="mb-2 text-color">Authenticator app</h5>
 @if (!Model.HasAuthenticator)
 {
-    <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-sm text-white mb-2" style="background-color:#00664d;">Add authenticator app</a>
+    <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-sm button-layout mb-2" >Add authenticator app</a>
 }
 else
 {
-    <a id="enable-authenticator" asp-page="./EnableAuthenticator"  class="btn btn-sm text-white mb-2" style="background-color:#00664d;">Setup authenticator app</a>
-    <a id="reset-authenticator" asp-page="./ResetAuthenticator"  class="btn btn-sm text-white mb-2" style="background-color:#00664d;">Reset authenticator app</a>
+    <a id="enable-authenticator" asp-page="./EnableAuthenticator"  class="btn btn-sm button-layout mb-2" >Setup authenticator app</a>
+    <a id="reset-authenticator" asp-page="./ResetAuthenticator"  class="btn btn-sm button-layout mb-2" >Reset authenticator app</a>
 }
 
+
+<style>
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

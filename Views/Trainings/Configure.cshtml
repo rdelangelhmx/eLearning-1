@@ -3,14 +3,26 @@
     ViewData["Title"] = "Configure";
 }
 
-<h3 class="text-center mb-3" style="color: #00664d;">Configure the Training section</h3>
+<h3 class="text-center mb-3 text-color">Configure the Training section</h3>
 <hr />
-    <form  asp-controller="Trainings" asp-action="Configure" method="post">
-        <div class= " mt-3">
-            <input type="number" id="no_of_lectures" name="no_of_lectures" min="1" class="form-control" id="no_of_lectures" placeholder="Enter the number of lectures">
-            <input type="hidden" value="@Model" id="course_id" name="course_id" />
-            <br />
-            <button type="submit" class="btn btn-block text-white" style="background-color: #00664d;">Done</button>
-        </div>
-    </form>
+<form asp-controller="Trainings" asp-action="Configure" method="post">
+    <div class=" mt-3">
+        <input type="number" id="no_of_lectures" name="no_of_lectures" min="1" class="form-control" id="no_of_lectures" placeholder="Enter the number of lectures">
+        <input type="hidden" value="@Model" id="course_id" name="course_id" />
+        <br />
+        <button type="submit" class="btn btn-block button-layout btn-rounded"  >Done</button>
+    </div>
+</form>
+
+<style>
+
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>
 

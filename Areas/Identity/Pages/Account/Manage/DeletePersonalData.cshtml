@@ -5,10 +5,10 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h5 style="color:#00664d;">@ViewData["Title"]</h5>
+<h5 class="text-color">@ViewData["Title"]</h5>
 
 <div class="alert alert-warning" role="alert">
-    <p style="color:#00664d;">
+    <p class="text-color">
         <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
     </p>
 </div>
@@ -18,8 +18,8 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         @if (Model.RequirePassword)
         {
-            <div class="form-group">
-                <label style="color:#00664d;" asp-for="Input.Password"></label>
+            <div class="form-group text-color">
+                <label  asp-for="Input.Password"></label>
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
@@ -27,7 +27,21 @@
         <button class="btn btn-danger" type="submit">Delete data and close my account</button>
     </form>
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
 
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+
+    .link {
+        color: #004d99;
+        text-decoration: none;
+    }
+</style>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

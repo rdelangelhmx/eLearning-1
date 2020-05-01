@@ -27,15 +27,15 @@
                 <ul class="navbar-nav flex-grow-1">
 
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index" style="color:#00664d"><i class="fas fa-home"></i> Home</a>
+                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Home</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold" asp-area="" asp-controller="Home" asp-action="News" style="color:#00664d"><i class="far fa-newspaper"></i> News</a>
+                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="News"><i class="far fa-newspaper"></i> News</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold" asp-area="" asp-controller="Home" asp-action="UsageGuide" style="color:#00664d"><i class="fas fa-info-circle"></i> Support</a>
+                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="UsageGuide"><i class="fas fa-info-circle"></i> Support</a>
                     </li>
                 </ul>
             </div>
@@ -85,13 +85,31 @@
         }
     }
 
-  
-    <footer class="footer text-muted border-top align-bottom">
-        <div class="container text-center">
-            <small>&copy; 2020 - Platform developed by ICI Bucharest. All rights reserved. - <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:#00664d">Privacy</a> | <a asp-area="" asp-controller="Home" asp-action="TermsAndConditions" style="color:#00664d">Terms and Conditions</a></small>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue footer-custom  border-top">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 mb-2">
+            <small>&copy; 2020 - Platform developed by ICI Bucharest. All rights reserved. - <a class="text-color" asp-area="" asp-controller="Home" asp-action="Privacy">GDPR</a> | <a class="text-color" asp-area="" asp-controller="Home" asp-action="TermsAndConditions">Privacy Policy</a></small>
         </div>
+        <!-- Copyright -->
+
     </footer>
-    
+    <style>
+        .footer-custom {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 3rem; /* Footer height */
+        }
+    </style>
+    <!-- Footer -->
+    @*<footer class="footer text-muted border-top align-bottom">
+            <div class="container text-center">
+                <small>&copy; 2020 - Platform developed by ICI Bucharest. All rights reserved. - <a class="text-color" asp-area="" asp-controller="Home" asp-action="Privacy">GDPR</a> | <a class="text-color" asp-area="" asp-controller="Home" asp-action="TermsAndConditions">Privacy Policy</a></small>
+            </div>
+        </footer>*@
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -99,6 +117,8 @@
 </body>
 </html>
 
-@{
-
-}
+<style>
+    .text-color {
+        color: #004d99 !important;
+    }
+</style>

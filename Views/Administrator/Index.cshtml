@@ -3,20 +3,21 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h2 class="text-center mb-4 mt-3" style="color:#00664d;">Administrator Dashboard</h2>
+<h2 class="text-center mb-4 mt-5 text-color" >Administrator Dashboard</h2>
 <div class="d-flex justify-content-center">
     <div class="col-md-4 ">
         
 
-            <a class="btn btn-block  btn-rounded mr-3 mb-2 text-white" style="background-color:#00664d;" href="@Url.Action("ManageRolesSearchByEmail", "Administrator")">Change user privileges</a>
+            <a class="btn btn-block  btn-rounded mr-3 mb-3 button-layout "  href="@Url.Action("ManageRolesSearchByEmail", "Administrator")">Change user privileges</a>
 
       
-            <a class="btn btn-block btn-rounded mr-3 mb-2 text-white" style="background-color:#00664d;" href="@Url.Action("Index", "Courses")">View all courses</a>
+            <a class="btn btn-block btn-rounded mr-3 mb-3 button-layout"  href="@Url.Action("Index", "Courses")">View all courses</a>
 
       
 
       
-            <a class="btn btn-block  btn-rounded mb-2 text-white" style="background-color:#00664d;" href="@Url.Action("Index","LicenseKeys")">View all license keys</a>
+            <a class="btn btn-block  btn-rounded mb-3  button-layout"  href="@Url.Action("Index","LicenseKeys")">View all license keys</a>
+       
 
        
 
@@ -26,6 +27,13 @@
     <style>
         .card {
             border: none;
+        }
+        .text-color {
+            color: #004d99;
+        }
+        .button-layout {
+            color: white;
+            background-color: #004d99;
         }
     </style>
 

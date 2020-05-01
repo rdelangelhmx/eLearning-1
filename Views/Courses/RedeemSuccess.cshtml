@@ -8,16 +8,26 @@
 
     <div class="text-center align-items-center">
         <br />
-        <h3 class="" style="color:#00664d;">You have been subscribed to the course.</h3>
+        <h3 class="text-color" >You have been subscribed to the course.</h3>
         <br />
-        <br/>
+        <br />
         <div>
-            <img class="" src="~/images/Check_green_icon.svg.png" style="height:16%; width:16%;"/>
+            <img class="" src="~/images/Check_green_icon.svg.png" style="height:16%; width:16%;" />
         </div>
         <br />
         <br />
-        <a class="btn btn-rounded text-white" style="background-color:#00664d;" href="@Url.Action("Index","Courses")">Back to courses</a>
+        <a class="btn btn-rounded button-layout"  href="@Url.Action("Index","Courses")">Back to courses</a>
 
     </div>
 
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>

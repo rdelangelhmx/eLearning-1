@@ -4,10 +4,10 @@
 }
 
 
-<h2 class=" text-justify mt-3 mb-4" style="color:#00664d;">Promote user role</h2>
+<h2 class=" text-justify mt-3 mb-4 write-color" >Promote user role</h2>
 
-<h4 class=" text-justify mt-3 mb-4" style="color:#00664d;" > Email: <span class="text-black-50"> @Model.Email</span> </h4>
-<h4 class=" text-justify mt-3 mb-4" style="color:#00664d;">Current Role: <span class="text-black-50"> @Model.CurrentRole</span></h4>
+<h4 class=" text-justify mt-3 mb-4 write-color"  > Email: <span class="text-black-50"> @Model.Email</span> </h4>
+<h4 class=" text-justify mt-3 mb-4 write-color" > Current Role: <span class="text-black-50"> @Model.CurrentRole</span></h4>
 
 @if (Model.CurrentRole == "Student")
 {
@@ -34,8 +34,12 @@
 
 <style>
     .btn-outline-secondary {
-        background-color: #00664d !important;
-        border-color: #00664d;
-        color:white;
+        background-color: #004d99 !important;
+        border-color: #004d99;
+        color: white;
+    }
+
+    .write-color {
+        color: #004d99;
     }
 </style>

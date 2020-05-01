@@ -115,7 +115,7 @@ namespace eLearning
             user.UserName = "administrator@ici.ro";
             user.Email = "administrator@ici.ro";
             user.EmailConfirmed = true;
-            string userPWD = "";
+            string userPWD = "1qaz!QAZ";
             IdentityResult chkUser = await UserManager.CreateAsync(user, userPWD);
             await UserManager.AddToRoleAsync(user, "Admin");
 

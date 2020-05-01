@@ -5,23 +5,33 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h5 style="color:#00664d;">@ViewData["Title"]</h5>
+<h5 class="text-color">@ViewData["Title"]</h5>
 
 <div class="row">
-    <div class="col-md-6">
-        <p style="color:#00664d;">Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-        <p style="color:#00664d;">
+    <div class="col-md-6 text-color">
+        <p >Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        <p >
             <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
         </p>
         <form id="download-data" asp-page="DownloadPersonalData" method="post" class="form-group">
-            <button class="btn btn-block text-white" style="background-color:#00664d;" type="submit">Download</button>
+            <button class="btn btn-block button-layout" type="submit">Download</button>
         </form>
         <p>
             <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger btn-block text-white">Delete</a>
         </p>
     </div>
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
 
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+
+</style>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

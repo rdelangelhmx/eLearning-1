@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-    <h2 class="" style="color: #00664d;">Course details</h2>
+    <h2 class="text-color" >Course details</h2>
     <hr />
     <div class="card">
         <div class="">
@@ -20,17 +20,17 @@
                     <h5 class="text-black  mb-4">Has Certificate:  <h7 class="text-black-50">YES</h7></h5>
                 }
             </div>
-            <h2 class="mt-1" style="color: #00664d;">Student resources</h2>
+            <h2 class="mt-1 text-color" >Student resources</h2>
             <hr />
             <div class="list-group d-flex">
                 <form asp-action="Details" asp-controller="Trainings" method="get">
-                    <button type="submit" class="btn-link btn font-weight-bold" style="color:#00664d; text-decoration:none;"><i class="fas fa-laptop-code"></i> Training</button>
+                    <button type="submit" class="nav-link btn btn-link font-weight-bold button-layout" ><i class="fas fa-laptop-code"></i> Training</button>
                     <input type="hidden" name="id" value="@Model.Id" />
                 </form>
                 
-                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fab fa-leanpub"></i> Evaluation</a>
-                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fas fa-graduation-cap"></i> Certificate</a>
-                <a class="nav-link font-weight-bold" href="#" style="color:#00664d"><i class="fas fa-arrow-circle-left"></i> Go back</a>
+                <a class="nav-link font-weight-bold button-layout" href="#" ><i class="fab fa-leanpub"></i> Evaluation</a>
+                <a class="nav-link font-weight-bold button-layout" href="#" ><i class="fas fa-graduation-cap"></i> Certificate</a>
+                <a class="nav-link font-weight-bold button-layout" href="#"><i class="fas fa-arrow-circle-left"></i> Go back</a>
 
             </div>
         </div>
@@ -38,5 +38,13 @@
 <style>
     .card{
         border:none;
+    }
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: #004d99;
+        text-decoration: none;
     }
 </style>

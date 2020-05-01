@@ -4,28 +4,29 @@
     ViewData["Title"] = "My Courses";
 }
 
-<h2 class="mb-3 mt-3" style="color: #00664d;">My Courses</h2>
+<h2 class="mb-3 mt-4 text-color text-center" >My Courses</h2>
+<hr />
 
 
 @if (User.IsInRole("Admin"))
 {
     
-        <a class="btn text-white btn-rounded mb-4" style="background-color: #00664d;" asp-action="Create">Create New</a>
-        <a class="btn text-white btn-rounded mb-4" style="background-color: #00664d;" asp-action="Redeem">Register Course Key</a>
+        <a class="nav-link mb-4 text-color font-weight-bold"  asp-action="Create"><i class="fas fa-plus-circle"></i> Create New</a>
+        <a class="nav-link mb-4 text-color font-weight-bold"  asp-action="Redeem"><i class="fas fa-key"></i> Register Course Key</a>
  
 }
 else
 {
-   <a class="btn text-white btn-rounded mb-4" style="background-color: #00664d;" asp-action="Redeem"><i class="fa fa-key" aria-hidden="true"></i>  Register Course Key</a>
+   <a class="nav-link mb-4 text-color font-weight-bold"  asp-action="Redeem"><i class="fa fa-key" aria-hidden="true"></i>  Register Course Key</a>
 }
 
 
-
+<br />
 
 @if (Model.Count() > 0)
 {
     <table class="table table-hover">
-        <thead class="text-center text-white" style="background-color: #00664d;">
+        <thead class="text-center text-white" style="background-color:  #004d99;">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
@@ -75,4 +76,13 @@ else
     <h3 style="color:#b30000;">You are not registered to any courses <i class="fas fa-frown"></i></h3>
 }
 
+<style>
+    .text-color {
+        color: #004d99;
+    }
 
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>

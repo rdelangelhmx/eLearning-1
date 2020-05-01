@@ -3,14 +3,23 @@
 @{
     ViewData["Title"] = "Manage User Roles";
 }
-    <h2 class="text-justify mt-3 mb-4" style="color:#00664d;">Manage user roles</h2>
+    <h2 class="text-justify mt-3 mb-4 write-color" >Manage user roles</h2>
 
 
 
 <form class="align-items-center" asp-action="ManageRolesSearchByEmail" asp-controller="Administrator">
     <div class="form-group">
-        <label class="font-weight-bold mb-2" for="email" style="color:#00664d;">Search by email</label>
+        <label class="font-weight-bold mb-2 write-color" for="email" >Search by email</label>
         <input type="text" class="form-control mb-2" style="width: 38%;" id="email" name="email" placeholder="Enter email" required>
     </div>
-    <button type="submit" class="btn btn-rounded text-white" style="background-color:#00664d;">Submit</button>
+    <button type="submit" class="btn btn-rounded button-layout">Submit</button>
 </form>
+<style>
+    .write-color {
+        color: #004d99;
+    }
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>

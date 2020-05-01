@@ -6,13 +6,13 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h5 style="color:#00664d;">@ViewData["Title"]</h5>
-<div class="alert alert-warning" role="alert">
-    <p style="color:#00664d;">
+<h5 class="text-color">@ViewData["Title"]</h5>
+<div class="alert alert-warning text-color" role="alert">
+    <p>
         <span class="glyphicon glyphicon-warning-sign"></span>
         <strong>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
     </p>
-    <p style="color:#00664d;">
+    <p >
         This process disables 2FA until you verify your authenticator app.
         If you do not complete your authenticator app configuration you may lose access to your account.
     </p>
@@ -22,3 +22,13 @@
         <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Reset authenticator key</button>
     </form>
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>

@@ -5,18 +5,18 @@
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
 
-<h5 style="color:#00664d;">@ViewData["Title"]</h5>
+<h5 class="text-color">@ViewData["Title"]</h5>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="row">
     <div class="col-md-6">
         <form id="email-form" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label style="color:#00664d;" asp-for="Email"></label>
+            <div class="form-group text-color">
+                <label  asp-for="Email"></label>
                 @if (Model.IsEmailConfirmed)
                 {
-                    <div class="input-group">
-                        <input style="color:#00664d;" asp-for="Email" class="form-control" disabled />
+                    <div class="input-group text-color">
+                        <input asp-for="Email" class="form-control" disabled />
                         <div class="input-group-append">
                             <span class="input-group-text text-success font-weight-bold">✓</span>
                         </div>
@@ -24,20 +24,29 @@
                 }
                  else
                 {
-                    <input style="color:#00664d;" asp-for="Email" class="form-control" disabled />
+                    <input asp-for="Email" class="form-control" disabled />
                     <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
                 }
             </div>
-            <div class="form-group">
-                <label style="color:#00664d;" asp-for="Input.NewEmail"></label>
+            <div class="form-group text-color">
+                <label  asp-for="Input.NewEmail"></label>
                 <input asp-for="Input.NewEmail" class="form-control" />
                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-block text-white" style="background-color:#00664d;">Change email</button>
+            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-block button-layout">Change email</button>
         </form>
     </div>
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
 
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

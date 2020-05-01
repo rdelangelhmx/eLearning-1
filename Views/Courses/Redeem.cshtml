@@ -3,19 +3,28 @@
     ViewData["Title"] = "Redeem";
 }
 
-<h2 class="text-justify mt-3 mb-4" style="color:#00664d;">Enter the key provided by ICI</h2>
+<h2 class="text-justify mt-3 mb-4 text-color" >Enter the key provided by ICI</h2>
 
 
 
 <form class="align-items-center"  asp-controller="Courses" asp-action="Redeem" method="post">
     <div class="form-group">
-        <label class="font-weight-bold mb-2" style="color:#00664d;" for="key">Serial code</label>
+        <label class="font-weight-bold mb-2 text-color"  for="key">Serial code</label>
         <input type="text" class="form-control mb-2" style="width:38%;" id="key" name="key" placeholder="Enter serial code" required>
     </div>
-    <button type="submit" class=" text-white btn btn-rounded" style="background-color:#00664d;">Submit</button>
+    <button type="submit" class=" button-layout btn btn-rounded" >Submit</button>
 </form>
 
+<style>
+    .text-color {
+        color: #004d99;
+    }
 
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>
 
 
 

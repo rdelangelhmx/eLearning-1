@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h3 class="text-center" style="color:#00664d;">Modify your lecture <i class="fas fa-pen"></i></h3>
+<h3 class="text-center text-color" >Modify your lecture <i class="fas fa-pen"></i></h3>
 <hr />
-<div class="row d-flex justify-content-center"  style="color:#00664d;">
+<div class="row d-flex justify-content-center text-color" >
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -30,13 +30,25 @@
             <input type="hidden" asp-for="Index" />
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-block text-white" style="background-color:#00664d;" />
-                <a class="btn btn-block text-white" style="background-color:#00664d;" asp-action="Index">Back to List</a>
+                <input type="submit" value="Save" class="btn btn-block button-layout"  />
+                <a class="btn btn-block button-layout"  asp-action="Index">Back to List</a>
             </div>
         </form>
 
     </div>
 </div>
 
+<style>
+
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+
+</style>
 
 

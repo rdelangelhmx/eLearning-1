@@ -4,10 +4,10 @@
     ViewData["Title"] = "Licenses";
 }
 
-<h1>All licenses</h1>
+<h2 class="text-color">All licenses</h2>
 
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class =" text-white text-center"style="background-color:  #004d99;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Value)
@@ -41,3 +41,8 @@
 }
     </tbody>
 </table>
+<style>
+    .text-color {
+        color: #004d99;
+    }
+</style>
