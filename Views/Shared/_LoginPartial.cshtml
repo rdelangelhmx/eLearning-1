@@ -5,31 +5,37 @@
     <ul class="navbar-nav ">
         @if (SignInManager.IsSignedIn(User))
         {
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-color" asp-controller="Administrator" asp-action="Index"><i class="fas fa-user-shield"></i> Admin Dashboard</a>
+                </li>
+            }
+
             <li class="nav-item">
-                <a class="nav-link font-weight-bold text-color" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" ><i class="fa fa-user-circle" aria-hidden="true"></i> My account</a>
+                <a class="nav-link font-weight-bold text-color" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa fa-user-circle" aria-hidden="true"></i> My account: @UserManager.GetUserAsync(User).Result.Email</a>
             </li>
 
             <li class="nav-item">
                 <form id="my_form" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"class="nav-link font-weight-bold text-color" ><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="nav-link font-weight-bold text-color"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                 </form>
             </li>
         }
         else
         {
             <li class="nav-item">
-                <a class="nav-link font-weight-bold text-color" asp-area="Identity" asp-page="/Account/Login" ><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                <a class="nav-link font-weight-bold text-color" asp-area="Identity" asp-page="/Account/Login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
             </li>
-           
+
             <li class="nav-item">
-                <a class=" nav-link font-weight-bold text-color" asp-area="Identity" asp-page="/Account/Register" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Register</a>
+                <a class=" nav-link font-weight-bold text-color" asp-area="Identity" asp-page="/Account/Register"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Register</a>
             </li>
         }
     </ul>
 
-    <style>
-        .text-color {
-            color: #004d99 !important;
-        }
-   
+<style>
+    .text-color {
+        color: #004d99 !important;
+    }
 </style>

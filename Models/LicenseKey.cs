@@ -9,5 +9,6 @@
         public int Course_id { get; set; }
 
         public bool Used { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<eLearning.Models.MySubscriptionsViewModel>
+
+@{
+    ViewData["Title"] = "My Subscriptions";
+}
+
+<h2 class="mb-3 mt-4 text-color text-center">My Subscriptions</h2>
+<hr />
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-hover">
+
+        <thead class="text-white text-center" style="background-color:  #004d99;">
+            <tr>
+                <th>
+                    <p>License Key</p>
+                </th>
+                <th>
+                    <p>Course name</p>
+                </th>
+                <th>
+                    <p>Status</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.License_Key)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course_Name)
+                    </td>
+                    <td>
+                        @if (item.Valid == false)
+                        {
+                            <p style="color:red">Deactivated</p>
+                        }
+                        else
+                        {
+                            <p style="color:red">Active</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="container-fluid">
+
+        <div class="text-center align-items-center pt-4 pb-4">
+            <h4 class="card-title py-3 text-color"> You are not registerd to any courses.<i class="fas fa-frown"></i></h4>
+        </div>
+
+    </div>
+    <style>
+    </style>
+}
+<style>
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>

@@ -73,7 +73,7 @@ namespace eLearning.Controllers
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
 
-            return RedirectToAction("Details","Trainings",new { id = course_id});
+            return RedirectToAction("Details", "Trainings", new { id = course_id });
         }
 
         [Authorize(Roles = "Admin,Tutor")]
@@ -102,7 +102,7 @@ namespace eLearning.Controllers
             if (filename_on_server == null)
                 return Content("filename not present");
 
-            var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\Course_Resources", filename_on_server);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Course_Resources", filename_on_server);
 
             var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))

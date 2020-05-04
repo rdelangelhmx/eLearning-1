@@ -13,7 +13,6 @@
 
     <!--NAVBAR-->
 
-
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
         <div class="container-fluid">
 
@@ -30,12 +29,16 @@
                         <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Home</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Courses" asp-action="Index"><i class="fas fa-book"></i> My courses</a>
+                    </li>
 
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="News"><i class="far fa-newspaper"></i> News</a>
+                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="MySubscriptions"><i class="far fa-id-card"></i> My subscriptions</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold text-color" asp-area="" asp-controller="Home" asp-action="UsageGuide"><i class="fas fa-info-circle"></i> Support</a>
+                        <a class="nav-link font-weight-bold text-color" asp-controller="Contact" asp-action="Index"><i class="fas fa-headset"></i> Support</a>
                     </li>
                 </ul>
             </div>
@@ -45,11 +48,6 @@
             </div>
         </div>
     </nav>
-
-    @*<div class="alert-warning">
-            <span class="fas fa-exclamation-triangle" aria-hidden="true">  Warning! The platform is undergoing maintainance. Downtime can be experienced at any time.</span>
-        </div>*@
-
 
     @{
         string controller = "";
@@ -62,9 +60,17 @@
             controller = null;
         }
 
-        var action = ViewContext.RouteData.Values["Action"];
+        string action = "";
+        if (ViewContext.RouteData.Values["Action"] != null)
+        {
+            action = ViewContext.RouteData.Values["Action"].ToString();
+        }
+        else
+        {
+            action = null;
+        }
 
-        if (controller == "Home")
+        if (controller == "Home" && action != "MySubscriptions")
         {
             <div class="">
                 <main role="main" class="">
@@ -95,6 +101,7 @@
         <!-- Copyright -->
 
     </footer>
+
     <style>
         .footer-custom {
             position: absolute;
@@ -103,12 +110,6 @@
             height: 3rem; /* Footer height */
         }
     </style>
-    <!-- Footer -->
-    @*<footer class="footer text-muted border-top align-bottom">
-            <div class="container text-center">
-                <small>&copy; 2020 - Platform developed by ICI Bucharest. All rights reserved. - <a class="text-color" asp-area="" asp-controller="Home" asp-action="Privacy">GDPR</a> | <a class="text-color" asp-area="" asp-controller="Home" asp-action="TermsAndConditions">Privacy Policy</a></small>
-            </div>
-        </footer>*@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

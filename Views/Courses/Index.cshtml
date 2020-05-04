@@ -4,20 +4,20 @@
     ViewData["Title"] = "My Courses";
 }
 
-<h2 class="mb-3 mt-4 text-color text-center" >My Courses</h2>
+<h2 class="mb-3 mt-4 text-color text-center">My Courses</h2>
 <hr />
 
 
 @if (User.IsInRole("Admin"))
 {
-    
-        <a class="nav-link mb-4 text-color font-weight-bold"  asp-action="Create"><i class="fas fa-plus-circle"></i> Create New</a>
-        <a class="nav-link mb-4 text-color font-weight-bold"  asp-action="Redeem"><i class="fas fa-key"></i> Register Course Key</a>
- 
+
+    <a class="nav-link mb-4 text-color font-weight-bold" asp-action="Create"><i class="fas fa-plus-circle"></i> Create New</a>
+    <a class="nav-link mb-4 text-color font-weight-bold" asp-action="Redeem"><i class="fas fa-key"></i> Register Course Key</a>
+
 }
 else
 {
-   <a class="nav-link mb-4 text-color font-weight-bold"  asp-action="Redeem"><i class="fa fa-key" aria-hidden="true"></i>  Register Course Key</a>
+    <a class="nav-link mb-4 text-color font-weight-bold" asp-action="Redeem"><i class="fa fa-key" aria-hidden="true"></i>  Register Course Key</a>
 }
 
 
@@ -46,24 +46,24 @@ else
         <tbody class="text-center">
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartingDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndingDate)
-                </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndingDate)
+                    </td>
 
                     <td>
                         @if (User.IsInRole("Admin"))
                         {
-                            <a class="text-dark" style="text-decoration:none;" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit  </a> 
-                            <a class="text-dark"  style="text-decoration:none;" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Delete  </a>
+                            <a class="text-dark" style="text-decoration:none;" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit  </a>
+                            <a class="text-dark" style="text-decoration:none;" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Delete  </a>
                         }
-                        <a class="text-dark"  style="text-decoration:none;" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-sign-out"></i> Go to course page</a>
+                        <a class="text-dark" style="text-decoration:none;" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-sign-out"></i> Go to course page</a>
 
                     </td>
                 </tr>

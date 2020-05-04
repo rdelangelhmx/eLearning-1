@@ -141,7 +141,7 @@ namespace eLearning.Controllers
 
             var lecture = await _context.Lecture.FindAsync(id);
 
-            if (owner_id != lecture.Owner_ID)
+            if (owner_id != lecture.Owner_ID && !User.IsInRole("Admin"))
             {
                 return Forbid();
             }

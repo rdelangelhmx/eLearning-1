@@ -83,7 +83,6 @@ namespace eLearning.Controllers
             return View();
         }
 
-        //Get
         public IActionResult AlterUserRole(AlterUserModel user)
         {
             return View(user);

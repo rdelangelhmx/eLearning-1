@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace eLearning.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -60,7 +61,6 @@ namespace eLearning.Controllers
         }
 
         // GET: Courses/Details/5
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             //Verify if user is registered at this course
@@ -75,7 +75,10 @@ namespace eLearning.Controllers
 
             foreach (var entry in user_course_entries)
             {
-                if (entry.CourseId == id)
+                //For each entry check key status
+                var key_status = _context.LicenseKey.Where(x => x.Value == entry.KeyUsed).FirstOrDefault().Active;
+
+                if (entry.CourseId == id && key_status == true)
                 {
                     allowed = true;
                 }
@@ -184,6 +187,7 @@ namespace eLearning.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult GenerateKey(int course_id, int number)
         {
             try
@@ -208,7 +212,8 @@ namespace eLearning.Controllers
                         {
                             Value = formatted_hash,
                             Course_id = course_id,
-                            Used = false
+                            Used = false,
+                            Active = true
                         };
                         _context.LicenseKey.Add(db_object);
                         _context.SaveChanges();
@@ -272,6 +277,7 @@ namespace eLearning.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -282,6 +288,7 @@ namespace eLearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,StartingDate,EndingDate,HasCertificate")] Course course)
         {
             if (ModelState.IsValid)
@@ -304,6 +311,7 @@ namespace eLearning.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -324,6 +332,7 @@ namespace eLearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,StartingDate,EndingDate,HasCertificate")] Course course)
         {
             if (id != course.Id)
@@ -355,6 +364,7 @@ namespace eLearning.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -375,6 +385,7 @@ namespace eLearning.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Course.FindAsync(id);
