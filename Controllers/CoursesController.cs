@@ -37,7 +37,7 @@ namespace eLearning.Controllers
 
             //Only show courses the user is registered
             //Get the list of courses
-            var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var current_user_id = _userManager.GetUserId(User);
             var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id).ToList();
             List<Course> registered_courses = new List<Course>();
 
@@ -65,8 +65,8 @@ namespace eLearning.Controllers
         {
             //Verify if user is registered at this course
             bool allowed = false;
-            var current_user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id);
+            var current_user_id = _userManager.GetUserId(User);
+            var user_course_entries = _context.UserCourse.Where(c => c.UserId == current_user_id).ToList();
 
             if (User.IsInRole("Admin"))
             {
@@ -81,6 +81,7 @@ namespace eLearning.Controllers
                 if (entry.CourseId == id && key_status == true)
                 {
                     allowed = true;
+                    break;
                 }
             }
 
@@ -91,8 +92,8 @@ namespace eLearning.Controllers
                     return NotFound();
                 }
 
-                var course = await _context.Course
-                    .FirstOrDefaultAsync(m => m.Id == id);
+                var course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);
+
                 if (course == null)
                 {
                     return NotFound();
