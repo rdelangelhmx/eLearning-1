@@ -101,7 +101,7 @@
             @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
             {
                 <form asp-controller="Lectures" asp-action="Add">
-                    <button type="submit" class="btn"><i class="fas fa-plus-circle"></i>  Add another lecture</button>
+                    <button type="submit" class="btn text-color font-weight-bold"><i class="fas fa-plus-circle"></i>  Add another lecture</button>
                     <input type="hidden" value="@Model.FirstOrDefault().Lecture.Course_Id" name="Course_Id" />
                     <input type="hidden" value="Not setup yet" name="Text_Content" />
                     <input type="hidden" value="@(Model.Count()+1)" name="Index" />

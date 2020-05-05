@@ -4,35 +4,46 @@
     ViewData["Title"] = "Generate Key";
 }
 
-<h1>Generate Course Keys</h1>
-
-<div>
+<div class="text-color">
     <h4>Course information</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartingDate)
+        <dt class="col-sm-2">
+            Starting Date
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StartingDate)
         </dd>
     </dl>
+
 </div>
+<br />
 <div>
 
-    <h4>License information</h4>
-    <br />
+    <h4 class="text-color">License information</h4>
+    <hr />
+    
     <form asp-controller="Courses" asp-action="GenerateKey" method="post">
 
         <input type="hidden" id="course_id" name="course_id" value=@Model.Id>
         <input id="number" name="number" placeholder="Number of licenses" /><br /><br />
-        <input type="submit" />
+        <input class="btn text-white decor" type="submit" value="Generate">
 
     </form>
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
+
+    .decor {
+        text-decoration: none;
+        background-color: #004d99;
+    }
+</style>

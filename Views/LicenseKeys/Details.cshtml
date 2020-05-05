@@ -4,11 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>LicenseKey</h4>
-    <hr />
+<h2 class="text-color mt-2">About licence key</h2>
+<hr />
+<br />
+<div class="text-color">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Value)
@@ -24,6 +23,16 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="align-content-center">
+    <a class="btn text-white decor" asp-action="Index">Back to List</a>
 </div>
+<style>
+    .text-color {
+        color: #004d99;
+    }
+
+    .decor {
+        text-decoration: none;
+        background-color: #004d99;
+    }
+</style>

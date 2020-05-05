@@ -4,7 +4,9 @@
     ViewData["Title"] = "Licenses";
 }
 
-<h2 class="text-color">All licenses</h2>
+<h2 class="text-color text-center mt-3">All licenses</h2>
+<hr />
+<br />
 
 <table class="table table-hover">
     <thead class =" text-white text-center"style="background-color:  #004d99;">
@@ -23,7 +25,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="text-center">
             <td>
                 @Html.DisplayFor(modelItem => item.Value)
             </td>
@@ -34,8 +36,8 @@
                 @Html.DisplayFor(modelItem => item.Used)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="link decor" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> Details</a> 
+                <a class="link decor" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i> Delete</a>
             </td>
         </tr>
 }
@@ -44,5 +46,9 @@
 <style>
     .text-color {
         color: #004d99;
+    }
+    .decor{
+        text-decoration:none;
+        
     }
 </style>

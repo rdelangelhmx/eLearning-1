@@ -4,18 +4,23 @@
     ViewData["Title"] = "Register confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-color">@ViewData["Title"]</h1>
 @{
     if (@Model.DisplayConfirmAccountLink)
     {
-        <p>
+        <p class="text-color">
             Please check your email to confirm your account.
         </p>
     }
     else
     {
-        <p>
+        <p class="text-color">
             Please check your email to confirm your account.
         </p>
     }
 }
+<style>
+    .text-color {
+        color: #004d99;
+    }
+</style>
