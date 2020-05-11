@@ -83,7 +83,7 @@ namespace eLearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Course_Id,Text_Content,Index,Lecture_Title")] Lecture lecture)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Course_Id,Text_Content,Index,Lecture_Title,Owner_ID,Is_Zoom_Enabled,StartTime,Zoom_Invite_Link")] Lecture lecture)
         {
             if (id != lecture.Id)
             {

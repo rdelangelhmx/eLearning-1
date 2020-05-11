@@ -51,6 +51,15 @@
                         <div class="card-body">
 
                             <div class="text-color">
+
+                                @if (l.Lecture.Is_Zoom_Enabled)
+                                {
+                                    <div class="alert alert-secondary" role="alert">
+                                        <img src="~/images/zoom_logo.png" width="60" />
+                                        Meeting start date: @l.Lecture.StartTime --> <a href=@l.Lecture.Zoom_Invite_Link>Join Meeting</a> 
+                                    </div>
+                                }
+
                                 @l.Lecture.Text_Content
                             </div>
 

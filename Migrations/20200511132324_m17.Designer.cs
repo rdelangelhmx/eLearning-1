@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eLearning.Data;
 
 namespace eLearning.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200511132324_m17")]
+    partial class m17
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,9 +324,6 @@ namespace eLearning.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Text_Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zoom_Invite_Link")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
