@@ -4,10 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h3 class="text-center text-color" >Modify your lecture <i class="fas fa-pen"></i></h3>
+<script src="https://cdn.tiny.cloud/1/b586qjtq288272d7fb3a7mg35souopewxjkx4gs8xf4si8u0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<h3 class="text-center text-color">Modify your lecture <i class="fas fa-pen"></i></h3>
 <hr />
 <div class="row d-flex justify-content-center text-color">
-    <div class="col-md-4">
+    <div class="col-md-7">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -25,13 +27,13 @@
 
             <div class="form-group">
                 <label asp-for="Text_Content" class="control-label">Enter a brief lecture summary</label>
-                <input asp-for="Text_Content" class="form-control" />
+                <input asp-for="Text_Content" id="text_content" class="form-control" />
                 <span asp-validation-for="Text_Content" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Is_Zoom_Enabled" class="control-label">Will have Zoom meeting?</label>
-                <input asp-for="Is_Zoom_Enabled" class="form-control" onclick="activate_zoom()" id="zoom_checkbox"/>
+                <input asp-for="Is_Zoom_Enabled" class="form-control" onclick="activate_zoom()" id="zoom_checkbox" />
                 <span asp-validation-for="Is_Zoom_Enabled" class="text-danger"></span>
             </div>
 
@@ -59,10 +61,15 @@
 
 <script>
 
+    document.addEventListener("DOMContentLoaded", function (event) {
+        console.log("DOM fully loaded and parsed");
+        activate_zoom();
+    });
+
     function activate_zoom() {
 
         var zoom_1 = document.getElementById("zoom_item_1");
-        
+
         var zoom_2 = document.getElementById("zoom_item_2");
 
         var check_box = document.getElementById("zoom_checkbox");
@@ -76,6 +83,10 @@
         }
     }
 
+    tinymce.init({
+        selector: '#text_content'
+    });
+
 </script>
 
 <style>
@@ -88,7 +99,6 @@
         color: white;
         background-color: #004d99;
     }
-
 </style>
 
 

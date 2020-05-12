@@ -17,7 +17,6 @@ namespace eLearning.Models
         public bool Is_Zoom_Enabled { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime StartTime { get; set; }
 
         public string Zoom_Invite_Link { get; set; }
