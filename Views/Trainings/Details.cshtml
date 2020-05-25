@@ -20,31 +20,35 @@
 
                 <div class="card">
                     <div class="card-header" style="background-color: #004d99;" id="div_@(l.Lecture.Lecture_Title)">
-                        <h5 class="float-left text-white">
-                            <button class="btn btn-link text-white btn-lg" style="outline:none; text-decoration:none;" data-toggle="collapse" data-target="#div_@(l.Lecture.Index)" aria-expanded="false" aria-controls="div_@(l.Lecture.Index)">
-                                <i class="fas fa-book-reader"></i> @l.Lecture.Lecture_Title
-                            </button>
-                        </h5>
-                        @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
-                        {
+                        <div>
+                            <h5 class=" text-white">
+                                <button class="btn btn-link text-white btn-lg  text-justify" style="outline:none; text-decoration:none;" data-toggle="collapse" data-target="#div_@(l.Lecture.Index)" aria-expanded="false" aria-controls="div_@(l.Lecture.Index)">
+                                    <i class="fas fa-book-reader"></i> @l.Lecture.Lecture_Title
+                                </button>
+                            </h5>
+                        </div>
+                        <div class="d-inline">
+                            @if (User.IsInRole("Admin") || User.IsInRole("Tutor"))
+                            {
 
-                            <form class="float-right" asp-controller="Lectures" asp-action="Delete">
-                                <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
-                                <button class="btn btn-lg btn-link button-layout"><i class="fas fa-trash" style="color:#ff0000;"></i> Delete</button>
-                            </form>
+                                <form class="float-right" asp-controller="Lectures" asp-action="Delete">
+                                    <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
+                                    <button class="btn btn-lg nav-link button-layout"><i class="fas fa-trash" style="color:#ff0000;"></i> Delete</button>
+                                </form>
 
-                            <form class="float-right" asp-controller="Lectures" asp-action="Edit" method="get">
-                                <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
-                                <button class="btn btn-link button-layout btn-lg" type="submit"><i class="fas fa-edit"></i>Edit this lecture</button>
-                            </form>
+                                <form class="float-right" asp-controller="Lectures" asp-action="Edit" method="get">
+                                    <input type="hidden" name="id" id="id" value="@l.Lecture.Id" />
+                                    <button class="btn nav-link button-layout btn-lg" type="submit"><i class="fas fa-edit"></i>Edit this lecture</button>
+                                </form>
 
-                            <form class="float-right" asp-controller="Files" asp-action="UploadScreen">
-                                <input type="hidden" name="lecture_id" value="@l.Lecture.Id" />
-                                <input type="hidden" name="course_id" value="@l.Lecture.Course_Id" />
-                                <button class="btn btn-link button-layout btn-lg"><i class="fas fa-file-upload"></i> Upload Materials</button>
-                            </form>
+                                <form class="float-right" asp-controller="Files" asp-action="UploadScreen">
+                                    <input type="hidden" name="lecture_id" value="@l.Lecture.Id" />
+                                    <input type="hidden" name="course_id" value="@l.Lecture.Course_Id" />
+                                    <button class="btn nav-link button-layout btn-lg"><i class="fas fa-file-upload"></i> Upload Materials</button>
+                                </form>
 
-                        }
+                            }
+                        </div>
                     </div>
 
                     <div id="div_@(l.Lecture.Index)" class="collapse" aria-labelledby="div_@(l.Lecture.Lecture_Title)" data-parent="#accordion">
