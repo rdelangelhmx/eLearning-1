@@ -41,7 +41,7 @@ namespace eLearning.Controllers
                 List<LectureContentViewModel> content = new List<LectureContentViewModel>();
 
                 //Get all the Lecture objects
-                var lectures = _context.Lecture.Where(x => x.Course_Id == id).ToList();
+                var lectures = _context.Lecture.Where(x => x.Course_Id == id).ToList().OrderBy(x => x.Index);
 
                 //Foreach lecture - get all of its files
                 foreach(var lecture in lectures)
