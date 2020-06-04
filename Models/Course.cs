@@ -16,6 +16,9 @@ namespace eLearning.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMMM/yyyy}")]
         public DateTime EndingDate { get; set; }
+
         public bool HasCertificate { get; set; }
+
+        public byte[] CourseImage { get; set; }
     }
 }

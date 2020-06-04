@@ -36,7 +36,7 @@ namespace eLearning.Controllers
                 return NotFound();
             }
 
-            if(training.No_Of_lectures != 0)
+            if (training.No_Of_lectures != 0)
             {
                 List<LectureContentViewModel> content = new List<LectureContentViewModel>();
 
@@ -44,7 +44,7 @@ namespace eLearning.Controllers
                 var lectures = _context.Lecture.Where(x => x.Course_Id == id).ToList().OrderBy(x => x.Index);
 
                 //Foreach lecture - get all of its files
-                foreach(var lecture in lectures)
+                foreach (var lecture in lectures)
                 {
                     var files = _context.CourseResources.Where(x => x.Lecture_Id == lecture.Id).ToList();
                     var obj = new LectureContentViewModel
@@ -55,7 +55,15 @@ namespace eLearning.Controllers
                     content.Add(obj);
                 }
 
-
+                //Get the course with this id and the image
+                var course = _context.Course.Find(id);
+                if(course.CourseImage != null)
+                {
+                    string imageBase64Data = Convert.ToBase64String(course.CourseImage);
+                    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+                    ViewBag.ImageDataUrl = imageDataURL;
+                }
+                
                 return View(content);
             }
 
@@ -99,14 +107,15 @@ namespace eLearning.Controllers
         public IActionResult Configure(int course_id, int no_of_lectures)
         {
             //Create all the lecture objects and store them in the database
-            for (int i=0; i<no_of_lectures; i++)
+            for (int i = 0; i < no_of_lectures; i++)
             {
                 var lecture = new Lecture
                 {
+                    Lecture_Color = "#3b5998",
                     Course_Id = course_id,
                     Text_Content = "Not setup yet",
-                    Lecture_Title = "Lecture " + (i+1).ToString(),
-                    Index = (i+1).ToString(),
+                    Lecture_Title = "Lecture " + (i + 1).ToString(),
+                    Index = (i + 1).ToString(),
                     Owner_ID = _userManager.GetUserId(User)
                 };
                 _context.Lecture.Add(lecture);
@@ -152,7 +161,7 @@ namespace eLearning.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ResetConfirmed(int? id)
         {
-            if(!User.IsInRole("Admin") && !User.IsInRole("Tutor"))
+            if (!User.IsInRole("Admin") && !User.IsInRole("Tutor"))
             {
                 return NotFound();
             }

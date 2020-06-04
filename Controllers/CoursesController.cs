@@ -1,16 +1,19 @@
 ﻿using eLearning.Data;
 using eLearning.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace eLearning.Controllers
 {
@@ -334,7 +337,7 @@ namespace eLearning.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,StartingDate,EndingDate,HasCertificate")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,StartingDate,EndingDate,HasCertificate,CourseImage")] Course course)
         {
             if (id != course.Id)
             {
@@ -362,6 +365,25 @@ namespace eLearning.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(course);
+        }
+
+        [HttpPost]
+        public ActionResult UploadPhoto(int id, IFormFile file)
+        {
+            MemoryStream ms = new MemoryStream();
+            file.CopyTo(ms);
+            var imageData = ms.ToArray();
+
+            ms.Close();
+            ms.Dispose();
+
+            var course = _context.Course.Find(id);
+            course.CourseImage = imageData;
+
+            _context.Update(course);
+
+            _context.SaveChanges();
+            return RedirectToAction("Details", "Trainings", new { id = id });
         }
 
         // GET: Courses/Delete/5

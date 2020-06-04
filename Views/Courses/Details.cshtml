@@ -20,12 +20,12 @@
                     <h5 class="text-black  mb-4">Has Certificate:  <h7 class="text-black-50">YES</h7></h5>
                 }
             </div>
-            <h2 class="mt-1 text-color" >Student resources</h2>
+            <h2 class="mt-1 text-color">Student resources</h2>
             <hr />
             <div class="list-group d-flex text-color">
 
                 <form asp-action="Details" asp-controller="Trainings" method="get">
-                    <button type="submit" class="nav-link btn btn-link font-weight-bold button-layout" ><i class="fas fa-laptop-code"></i> Training</button>
+                    <button type="submit" class="nav-link btn btn-link font-weight-bold button-layout"><i class="fas fa-laptop-code"></i> Training</button>
                     <input type="hidden" name="id" value="@Model.Id" />
                 </form>
 
@@ -44,6 +44,16 @@
                         <button type="submit" class="btn-link btn font-weight-bold text-color" style="color:#00664d; text-decoration:none;"><i class="fas fa-key"></i> Generate license keys for this course</button>
                         <input type="hidden" name="id" value="@Model.Id" />
                     </form>
+                </div>
+                <div class="list-group d-flex">
+                    <div class="jumbotron">
+                        <h4>Change the course logo</h4>
+                        <form asp-action="UploadPhoto" asp-controller="Courses" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="file" name="file" /> <br />
+                            <button type="submit" class="btn-link btn font-weight-bold text-color" style="color:#00664d; text-decoration:none;"> Upload</button>
+                        </form>
+                    </div>
                 </div>
             }
         </div>

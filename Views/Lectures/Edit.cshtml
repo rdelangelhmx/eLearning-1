@@ -32,7 +32,13 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Is_Zoom_Enabled" class="control-label">Will have Zoom meeting?</label>
+                <label asp-for="Lecture_Color" class="control-label"></label>
+                <input asp-for="Lecture_Color" type="color" class="form-control" />
+                <span asp-validation-for="Lecture_Color" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Is_Zoom_Enabled" class="control-label">Will have Webex meeting?</label>
                 <input asp-for="Is_Zoom_Enabled" class="form-control" onclick="activate_zoom()" id="zoom_checkbox" />
                 <span asp-validation-for="Is_Zoom_Enabled" class="text-danger"></span>
             </div>
@@ -44,7 +50,7 @@
             </div>
 
             <div class="form-group" id="zoom_item_2" style="display:none">
-                <label asp-for="Zoom_Invite_Link" class="control-label">Set the Zoom invite link</label>
+                <label asp-for="Zoom_Invite_Link" class="control-label">Set the Webex invite link</label>
                 <input asp-for="Zoom_Invite_Link" class="form-control" />
                 <span asp-validation-for="Zoom_Invite_Link" class="text-danger"></span>
             </div>

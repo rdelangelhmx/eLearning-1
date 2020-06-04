@@ -7,19 +7,27 @@
 <div>
     @if (Model.ElementAt(0).Lecture.Text_Content != "dummy")
     {
-        <div class="text-center align-items-center">
-            <br />
-            <h3 class="text-color">Your Materials</h3>
-            <hr />
-            <br />
-        </div>
+    <div class="text-center align-items-center">
+        <br />
+        @if (ViewBag.ImageDataUrl != null)
+        {
+            <img src="@ViewBag.ImageDataUrl" />
+        }
+        else
+        {
+            <h3>Course Content</h3>
+        }
+
+        <hr />
+        <br />
+    </div>
 
         <div id="accordion">
             @foreach (var l in Model)
             {
 
                 <div class="card">
-                    <div class="card-header" style="background-color: #004d99;" id="div_@(l.Lecture.Lecture_Title)">
+                    <div class="card-header" style="background-color: @l.Lecture.Lecture_Color;" id="div_@(l.Lecture.Lecture_Title)">
                         <div>
                             <h5 class=" text-white">
                                 <button class="btn btn-link text-white btn-lg  text-justify" style="outline:none; text-decoration:none;" data-toggle="collapse" data-target="#div_@(l.Lecture.Index)" aria-expanded="false" aria-controls="div_@(l.Lecture.Index)">
@@ -59,7 +67,7 @@
                                 @if (l.Lecture.Is_Zoom_Enabled)
                                 {
                                     <div class="alert alert-secondary" role="alert">
-                                        <img src="~/images/zoom_logo.png" width="60" />
+                                        <img src="~/images/webex_logo.png" width="90" />
                                         Meeting start date: @l.Lecture.StartTime --> <a href=@l.Lecture.Zoom_Invite_Link>Join Meeting</a>
                                     </div>
                                 }

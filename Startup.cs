@@ -36,17 +36,12 @@ namespace eLearning
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews(config =>
             {
-                // using Microsoft.AspNetCore.Mvc.Authorization;
-                // using Microsoft.AspNetCore.Authorization;
                 var policy = new AuthorizationPolicyBuilder()
                                  .RequireAuthenticatedUser()
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            // requires
-            // using Microsoft.AspNetCore.Identity.UI.Services;
-            // using WebPWrecover.Services;
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
 

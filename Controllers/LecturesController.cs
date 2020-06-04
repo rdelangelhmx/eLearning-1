@@ -51,10 +51,11 @@ namespace eLearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Course_Id,Text_Content,Index,Lecture_Title")] Lecture lecture)
+        public async Task<IActionResult> Create([Bind("Id,Course_Id,Text_Content,Index,Lecture_Title,Lecture_Color")] Lecture lecture)
         {
             if (ModelState.IsValid)
             {
+                lecture.Lecture_Color = "#3b5998";
                 _context.Add(lecture);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,7 +84,7 @@ namespace eLearning.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Course_Id,Text_Content,Index,Lecture_Title,Owner_ID,Is_Zoom_Enabled,StartTime,Zoom_Invite_Link")] Lecture lecture)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Course_Id,Text_Content,Index,Lecture_Title,Owner_ID,Is_Zoom_Enabled,StartTime,Zoom_Invite_Link,Lecture_Color")] Lecture lecture)
         {
             if (id != lecture.Id)
             {
@@ -116,10 +117,11 @@ namespace eLearning.Controllers
         // POST: Lectures/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,Course_Id,Text_Content,Index,Lecture_Title")] Lecture lecture)
+        public async Task<IActionResult> Add([Bind("Id,Course_Id,Text_Content,Index,Lecture_Title,Lecture_Color")] Lecture lecture)
         {
             if (ModelState.IsValid)
             {
+                lecture.Lecture_Color = "#3b5998";
                 lecture.Owner_ID = _userManager.GetUserId(User);
                 _context.Add(lecture);
                 //Increment lecture counter in Training
