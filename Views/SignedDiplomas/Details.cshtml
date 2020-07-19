@@ -1,0 +1,39 @@
+﻿@model QrViewModel
+
+@{
+    if (Model != null)
+    {
+        <div class="row">
+            
+            <div class="col-md-7 text-center jumbotron">
+
+                <div class="form-group">
+                    <h6>Course Name</h6>
+                    <p>@Model.signedDiploma.CourseName</p>
+                </div>
+
+                <div class="form-group">
+                    <h6>Diploma Holder</h6>
+                    <p>@Model.signedDiploma.HolderFullName</p>
+                </div>
+
+                <div class="form-group">
+                    <h6>Date of issue</h6>
+                    <p>@Model.signedDiploma.DateOfIssue</p>
+                </div>
+
+                <div class="form-group">
+                    <h6>Blockchain transaction id</h6>
+                    <p>@Model.signedDiploma.TransactionId</p>
+                </div>
+
+            </div>
+
+                <div class="col-md-5 text-center">
+                    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.byteArray))" height="300" width="300" />
+                    <p>Right-click the QR code to download</p>
+                </div>
+
+        </div>
+    }
+}

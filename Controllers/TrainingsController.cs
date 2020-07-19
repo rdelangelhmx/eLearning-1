@@ -47,10 +47,12 @@ namespace eLearning.Controllers
                 foreach (var lecture in lectures)
                 {
                     var files = _context.CourseResources.Where(x => x.Lecture_Id == lecture.Id).ToList();
+                    var video = _context.VideoCourseResources.Where(x => x.Lecture_Id == lecture.Id).ToList();
                     var obj = new LectureContentViewModel
                     {
                         Lecture = lecture,
-                        CourseResources = files
+                        CourseResources = files,
+                        VideoResources = video
                     };
                     content.Add(obj);
                 }

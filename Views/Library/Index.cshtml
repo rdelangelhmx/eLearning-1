@@ -1,0 +1,45 @@
+﻿
+<div>
+    <br />
+
+    <div>
+        <h2 class="text-center" style="color:#004d99">Digital Library</h2>
+        <hr />
+    </div>
+
+    <br />
+
+    <div class="card-deck">
+        <div class="card">
+            <a asp-controller="Library" asp-action="Repository" asp-route-category="blockchain">
+                <img class="card-img-top" src="/images/blockchain_library.jpg" alt="Blockchain Materials">
+            </a>
+            <div class="card-body">
+                <p class="card-text text-center"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <a asp-controller="Library" asp-action="Repository" asp-route-category="cyberdiplomacy">
+                <img class="card-img-top" src="~/images/cyberdiplomacy_library.jpg" alt="Cyberdiplomacy Materials">
+            </a>
+            <div class="card-body">
+                <p class="card-text text-center"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <a asp-controller="Library" asp-action="Repository" asp-route-category="cybersecurity">
+                <img class="card-img-top" src="/images/cybersecurity_library.jpg" alt="Cybersecurity Materials">
+            </a>
+            <div class="card-body">
+                <p class="card-text text-center"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card {
+        border: none
+    }
+</style>

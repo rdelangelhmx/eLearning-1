@@ -1,0 +1,50 @@
+﻿@model String
+<div>
+    <br />
+
+    <div>
+        <h2 class="text-center" style="color:#004d99">@ViewBag.Title Repository</h2>
+        <hr />
+    </div>
+
+    @if (User.IsInRole("Administrator"))
+    {
+
+        <form class="float-right" asp-controller="Library" asp-action="UploadScreen" asp-route-category="@ViewBag.category">
+            <button class="btn nav-link button-layout btn-lg"><i class="fas fa-file-upload"></i> Upload Materials</button>
+        </form>
+
+    }
+
+    <br />
+
+    <div class="card-deck">
+        <div class="card">
+            <h3>Official Materials</h3>
+            <div class="card-body">
+                <ul>
+                    <li>Entry 1</li>
+                    <li>Entry 2</li>
+                    <li>Entry 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Materials</h3>
+            <div class="card-body">
+                <ul>
+                    <li>Entry 1</li>
+                    <li>Entry 2</li>
+                    <li>Entry 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card {
+        border: none
+    }
+</style>

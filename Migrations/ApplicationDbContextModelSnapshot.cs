@@ -15,7 +15,7 @@ namespace eLearning.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -356,6 +356,30 @@ namespace eLearning.Migrations
                     b.ToTable("LectureInformation");
                 });
 
+            modelBuilder.Entity("eLearning.Models.LibraryResource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Generated_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Original_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isOfficial")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LibraryResources");
+                });
+
             modelBuilder.Entity("eLearning.Models.LicenseKey", b =>
                 {
                     b.Property<int>("Id")
@@ -378,6 +402,30 @@ namespace eLearning.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LicenseKey");
+                });
+
+            modelBuilder.Entity("eLearning.Models.SignedDiploma", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CourseName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("HolderFullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SignedDiplomas");
                 });
 
             modelBuilder.Entity("eLearning.Models.Training", b =>
@@ -417,6 +465,30 @@ namespace eLearning.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserCourse");
+                });
+
+            modelBuilder.Entity("eLearning.Models.VideoCourseResource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Course_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Generated_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Lecture_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Original_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VideoCourseResources");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -9,5 +9,6 @@ namespace eLearning.Models
     {
         public Lecture Lecture { get; set; }
         public List<CourseResources> CourseResources { get; set;}
+        public List<VideoCourseResource> VideoResources { get; set; }
     }
 }

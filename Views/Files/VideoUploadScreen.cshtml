@@ -1,0 +1,54 @@
+﻿@model eLearning.Models.CourseLectureViewModel
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<form method="post" enctype="multipart/form-data" asp-controller="Files" asp-action="UploadVideoLecture">
+
+    <div class="alert alert-warning rounded">
+        <h5 class="text-color"><i class="fa fa-info-circle" aria-hidden="true"></i>  File Upload Guidelines</h5>
+        <h6 class="text-color">Supported video format:</h6>
+
+        <div class="container text-color">
+            <div class="row">
+                <div class="col-sm">
+                    <ul>
+                        <li>.mp4</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <p class="text-color">Upload one video:</p>
+            <input class="stylish-input" type="file" name="files" multiple />
+            <input type="hidden" name="course_id" value="@Model.Course_Id" />
+            <input type="hidden" name="lecture_id" value="@Model.Lecture_Id" />
+        </div>
+    </div>
+    <div class="form-group" style="width:35%;">
+        <div class="col-md-10">
+            <input class="btn btn-block button-layout btn-rounded" type="submit" value="Upload" />
+        </div>
+    </div>
+</form>
+<style>
+    .stylish-input {
+        border-radius: 3px 4px;
+        color: white;
+        background-color: #004d99;
+    }
+
+    .text-color {
+        color: #004d99;
+    }
+
+    .button-layout {
+        color: white;
+        background-color: #004d99;
+    }
+</style>
