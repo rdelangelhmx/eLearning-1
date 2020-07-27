@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Course_Resources\" />
+    <Folder Include="wwwroot\Course_Diplomas\" />
     <Folder Include="wwwroot\Repository\Blockchain\" />
     <Folder Include="wwwroot\Repository\Cyberdiplomacy\" />
     <Folder Include="wwwroot\Repository\Cybersecurity\" />

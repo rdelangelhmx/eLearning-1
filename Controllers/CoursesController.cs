@@ -13,7 +13,6 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace eLearning.Controllers
 {
@@ -93,6 +92,15 @@ namespace eLearning.Controllers
                 if (id == null)
                 {
                     return NotFound();
+                }
+
+                if (_context.SurveyTaken.Where(m => m.UserId == current_user_id).Count() == 0)
+                {
+                    ViewBag.SurveyTaken = "no";
+                }
+                else
+                {
+                    ViewBag.SurveyTaken = "yes";
                 }
 
                 var course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);

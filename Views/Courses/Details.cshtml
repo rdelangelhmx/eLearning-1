@@ -7,18 +7,44 @@
     <hr />
     <div class="card">
         <div class="">
-            <div class="ml-2 mt-2">
-                <h5 class="text-black mb-3">Name of the course:  <h7 class="text-black-50">@Html.DisplayFor(model => model.Name)</h7> </h5>
-                <h5 class="text-black  mb-3">Starting Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.StartingDate)</h7></h5>
-                <h5 class="text-black mb-3">Ending Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.EndingDate)</h7></h5>
-                @if (Model.HasCertificate == false)
-                {
-                    <h5 class="text-black  mb-3">Has Certificate:  <h7 class="text-black-50">NO</h7></h5>
-                }
-                else
-                {
-                    <h5 class="text-black  mb-4">Has Certificate:  <h7 class="text-black-50">YES</h7></h5>
-                }
+            <div class="card-deck">
+                <div class="ml-2 mt-2 card">
+                    <h5 class="text-black mb-3">Name of the course:  <h7 class="text-black-50">@Html.DisplayFor(model => model.Name)</h7> </h5>
+                    <h5 class="text-black  mb-3">Starting Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.StartingDate)</h7></h5>
+                    <h5 class="text-black mb-3">Ending Date:  <h7 class="text-black-50">@Html.DisplayFor(model => model.EndingDate)</h7></h5>
+                    @if (Model.HasCertificate == false)
+                    {
+                        <h5 class="text-black  mb-3">Has Certificate:  <h7 class="text-black-50">NO</h7></h5>
+                    }
+                    else
+                    {
+                        <h5 class="text-black  mb-4">Has Certificate:  <h7 class="text-black-50">YES</h7></h5>
+                    }
+                </div>
+                <div class="card">
+                    @if (ViewBag.SurveyTaken == "yes")
+                    {
+                        <div class="rounded jumbotron text-center">
+                            <div class="card-body">
+                                <i class="fas fa-check-circle"></i><p>
+                                    Thank you for your feedback
+                                </p>
+                            </div>
+                            @Html.ActionLink("Submit another review", "TakeSurvey", "Survey")
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="rounded jumbotron text-center">
+                            <div class="card-body">
+                                <p>
+                                    Please take a moment to complete our survey
+                                </p>
+                            </div>
+                            @Html.ActionLink("Start Survey", "TakeSurvey", "Survey")
+                        </div>
+                    }
+                </div>
             </div>
             <h2 class="mt-1 text-color">Student resources</h2>
             <hr />

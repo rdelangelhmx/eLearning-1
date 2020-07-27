@@ -20,5 +20,6 @@ namespace eLearning.Data
         public DbSet<eLearning.Models.VideoCourseResource> VideoCourseResources { get; set; }
         public DbSet<eLearning.Models.ContactViewModel> ContactMessages { get; set; }
         public DbSet<eLearning.Models.SignedDiploma> SignedDiplomas { get; set; }
+        public DbSet<eLearning.Models.SurveyTaken> SurveyTaken { get; set; }
     }
 }
